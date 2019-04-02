@@ -2,10 +2,8 @@
 
 
 
-  
 
-
-<html class="theme-next muse use-motion" lang="">
+<html class="theme-next pisces" lang="">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -68,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="hexo,">
 
 
 
@@ -80,13 +78,14 @@
 
 
 <meta name="description" content="如何创建一个免费的github博客1、参考文章： https://www.jianshu.com/p/3217ecf4a789 https://www.cnblogs.com/fengxiongZz/p/7707219.html 2、hexo相关命令备注： 注意：hexo命令现在只能在hexo顶层目录下执行 hexo new ‘filename’        创建一个新的hexo文件，然后直接进">
+<meta name="keywords" content="hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="how to make hexo blog">
 <meta property="og:url" content="http://yoursite.com/2019/04/03/how to make hexo blog/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="如何创建一个免费的github博客1、参考文章： https://www.jianshu.com/p/3217ecf4a789 https://www.cnblogs.com/fengxiongZz/p/7707219.html 2、hexo相关命令备注： 注意：hexo命令现在只能在hexo顶层目录下执行 hexo new ‘filename’        创建一个新的hexo文件，然后直接进">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-02T20:02:37.137Z">
+<meta property="og:updated_time" content="2019-04-02T22:10:28.440Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="how to make hexo blog">
 <meta name="twitter:description" content="如何创建一个免费的github博客1、参考文章： https://www.jianshu.com/p/3217ecf4a789 https://www.cnblogs.com/fengxiongZz/p/7707219.html 2、hexo相关命令备注： 注意：hexo命令现在只能在hexo顶层目录下执行 hexo new ‘filename’        创建一个新的hexo文件，然后直接进">
@@ -97,12 +96,12 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: 'Author'
@@ -186,6 +185,26 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
           </a>
         </li>
       
@@ -275,6 +294,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/03/how to make hexo blog/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/03/how to make hexo blog/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -282,6 +311,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
           
 
           
@@ -329,6 +389,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
+          
+        </div>
+      
 
       
       
@@ -344,8 +410,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/03/a data migration method/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/03/a data migration method/" rel="prev" title="ceph内部数据迁移办法">
+                ceph内部数据迁移办法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -374,6 +440,16 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
 
   
 
@@ -423,14 +499,32 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
             
 
           </nav>
@@ -487,18 +581,21 @@
   <span class="author" itemprop="copyrightHolder">John Doe</span>
 
   
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
 
 
 
@@ -598,6 +695,13 @@
   
   
 
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
@@ -616,6 +720,26 @@
 
   
 
+    
+      <script id="dsq-count-scr" src="https://jackdan.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2019/04/03/how to make hexo blog/';
+          this.page.identifier = '2019/04/03/how to make hexo blog/';
+          this.page.title = 'how to make hexo blog';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://jackdan.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
 
 
 
@@ -628,10 +752,6 @@
   
 
 
-
-
-
-  
 
 
 
