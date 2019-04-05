@@ -574,8 +574,9 @@
           
           一种ceph下的数据迁移方法1、重新创建一套故障域、并给指定root绑定一个ruleset
 2、使用命令：ceph osd pool set $pool_name crush_rule $rule_name给资源池重新指定规则，即可完成数据迁移
-备注：这次测试仅仅实验了副本资源池，ec资源池还未尝试
-          ...
+已经验证过，副本对副本 ec对ec均可完成数据迁移
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/04/03/一种ceph的数据迁移方法/#more" rel="contents">
