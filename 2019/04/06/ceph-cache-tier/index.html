@@ -85,13 +85,13 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="一、缓存池原理 缓存分层特性也是在Ceph的Firefly版中正式发布的，这也是Ceph的Firefly版本中被谈论最多的一个特性。缓存分层是在更快的磁盘（通常是SSD），上创建一个Ceph池。这个缓存池应放置在一个常规的复制池或erasure池的前端，这样所有的客户端I/O操作都首先由缓存池处理。之后，再将数据写回到现有的数据池中。客户端能够在缓存池上享受高性能，而它们的数据显而易见最终是被写入">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2019/04/06/ceph-cache-tier/C:/hexo/source/_posts/ceph-cache-tier/640.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/06/ceph-cache-tier/C:/hexo/source/_posts/ceph-cache-tier/640.jpg">
-<meta property="og:updated_time" content="2019-04-06T06:22:27.121Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/06/ceph-cache-tier/640.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/06/ceph-cache-tier/640.jpg">
+<meta property="og:updated_time" content="2019-04-06T06:31:09.088Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ceph_cache_tier">
 <meta name="twitter:description" content="一、缓存池原理 缓存分层特性也是在Ceph的Firefly版中正式发布的，这也是Ceph的Firefly版本中被谈论最多的一个特性。缓存分层是在更快的磁盘（通常是SSD），上创建一个Ceph池。这个缓存池应放置在一个常规的复制池或erasure池的前端，这样所有的客户端I/O操作都首先由缓存池处理。之后，再将数据写回到现有的数据池中。客户端能够在缓存池上享受高性能，而它们的数据显而易见最终是被写入">
-<meta name="twitter:image" content="http://yoursite.com/2019/04/06/ceph-cache-tier/C:/hexo/source/_posts/ceph-cache-tier/640.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/06/ceph-cache-tier/640.png">
 
 
 
@@ -386,12 +386,12 @@
       
         <p><strong>一、缓存池原理</strong></p>
 <p>缓存分层特性也是在Ceph的Firefly版中正式发布的，这也是Ceph的Firefly版本中被谈论最多的一个特性。缓存分层是在更快的磁盘（通常是SSD），上创建一个Ceph池。这个缓存池应放置在一个常规的复制池或erasure池的前端，这样所有的客户端I/O操作都首先由缓存池处理。之后，再将数据写回到现有的数据池中。客户端能够在缓存池上享受高性能，而它们的数据显而易见最终是被写入到常规池中的。</p>
-<p> <img src="/2019/04/06/ceph-cache-tier/C:/hexo\source\_posts\ceph-cache-tier\640.png" alt="架构图"></p>
+<p> <img src="/2019/04/06/ceph-cache-tier/640.png" alt="架构图"></p>
 <p>一般来说，缓存层构建在昂贵/速度更快的SSD磁盘上，这样才能为客户提供更好的I/O性能。在缓存池后端通常是存储层，它由复制或者erasure类型的HDD组成。在这种类型的设置中，客户端将I/O请求提交到缓存池，不管它是一个读或写操作，它的请求都能够立即获得响应。速度更快的缓存层为客户端请求提供服务。一段时间后，缓存层将所有数据写回备用的存储层，以便它可以缓存来自客户端的新请求。在缓存层和存储层之间的数据迁移都是自动触发且对客户端是透明的。缓存分层能以两种模式进行配置。</p>
 <p> <strong>writeback模式</strong>：当Ceph的缓存分层配置为writeback模式时，Ceph客户端将数据写到缓存层类型的池，也就是速度更快的池，因此能够立即接收写入确认。基于你为缓存层设置的flushing/evicting策略，数据将从缓存层迁移到存储层，并最终由缓存分层代理将其从缓存层中删除。处理来自客户端的读操作时，首先由缓存分层代理将数据从存储层迁移到缓存层，然后再把它提供给客户。直到数据变得不再活跃或成为冷数据，否则它将一直保留在缓存层中。</p>
 <p><strong>read-only模式</strong>：当Ceph的缓存分层配置为read-only模式时，它只适用于处理客户端的读操作。客户端的写操作不涉及缓存分层，所有的客户端写都在存储层上完成。在处理来自客户端的读操作时，缓存分层代理将请求的数据从存储层复制到缓存层。基于你为缓存层配置的策略，不活跃的对象将会从缓存层中删除。这种方法非常适合多个客户端需要读取大量类似数据的场景。</p>
 <p>缓存层是在速度更快的物理磁盘（通常是SSD）上实现的，它在使用HDD构建的速度较慢的常规池前部署一个快速的缓存层。在本节中，我们将创建两个独立的池（一个缓存池和一个常规），分别用作缓存层和存储层。</p>
-<p><img src="/2019/04/06/ceph-cache-tier/C:/hexo\source\_posts\ceph-cache-tier\640.jpg" alt="部署图"></p>
+<p><img src="/2019/04/06/ceph-cache-tier/640.jpg" alt="部署图"></p>
 <p>二、理论与实践相结合**</p>
 <p>1、下面开始配置以cache作为sata-pool的前端高速缓冲池。</p>
 <p>1）新建缓冲池，其中，cache作为sata-pool的前端高速缓冲池。</p>
