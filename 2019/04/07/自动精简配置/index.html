@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="ceph,">
+  <meta name="keywords" content="storage,">
 
 
 
@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="一种ceph下的数据迁移方法1、重新创建一套故障域、并给指定root绑定一个ruleset 2、使用命令：ceph osd pool set $pool_name crush_rule $rule_name给资源池重新指定规则，即可完成数据迁移 已经验证过，副本对副本 ec对ec均可完成数据迁移">
-<meta name="keywords" content="ceph">
+<meta name="description" content="自动精简配置（Thin provisioning）自动精简配置，有时也被称为”超额申请“，是一中重要的新兴存储技术。本文定义了自动精简配置，并介绍它的工作原理、使用局限和一些使用建议。 如果应用程序所使用的存储空间已满，就会崩溃。因此，存储管理员通常分配比应用程序实际需要的存储空间更大的存储容量，以避免任何潜在的应用程序故障。这种做法为未来的增长提供了“headroom”（净空），并减少了应用程序">
+<meta name="keywords" content="storage">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ceph内部数据迁移办法">
-<meta property="og:url" content="http://yoursite.com/2019/04/03/一种ceph的数据迁移方法/index.html">
+<meta property="og:title" content="自动精简配置">
+<meta property="og:url" content="http://yoursite.com/2019/04/07/自动精简配置/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一种ceph下的数据迁移方法1、重新创建一套故障域、并给指定root绑定一个ruleset 2、使用命令：ceph osd pool set $pool_name crush_rule $rule_name给资源池重新指定规则，即可完成数据迁移 已经验证过，副本对副本 ec对ec均可完成数据迁移">
+<meta property="og:description" content="自动精简配置（Thin provisioning）自动精简配置，有时也被称为”超额申请“，是一中重要的新兴存储技术。本文定义了自动精简配置，并介绍它的工作原理、使用局限和一些使用建议。 如果应用程序所使用的存储空间已满，就会崩溃。因此，存储管理员通常分配比应用程序实际需要的存储空间更大的存储容量，以避免任何潜在的应用程序故障。这种做法为未来的增长提供了“headroom”（净空），并减少了应用程序">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-05T09:14:33.357Z">
+<meta property="og:updated_time" content="2019-04-07T09:23:23.888Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ceph内部数据迁移办法">
-<meta name="twitter:description" content="一种ceph下的数据迁移方法1、重新创建一套故障域、并给指定root绑定一个ruleset 2、使用命令：ceph osd pool set $pool_name crush_rule $rule_name给资源池重新指定规则，即可完成数据迁移 已经验证过，副本对副本 ec对ec均可完成数据迁移">
+<meta name="twitter:title" content="自动精简配置">
+<meta name="twitter:description" content="自动精简配置（Thin provisioning）自动精简配置，有时也被称为”超额申请“，是一中重要的新兴存储技术。本文定义了自动精简配置，并介绍它的工作原理、使用局限和一些使用建议。 如果应用程序所使用的存储空间已满，就会崩溃。因此，存储管理员通常分配比应用程序实际需要的存储空间更大的存储容量，以避免任何潜在的应用程序故障。这种做法为未来的增长提供了“headroom”（净空），并减少了应用程序">
 
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/03/一种ceph的数据迁移方法/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/07/自动精简配置/">
 
 
 
 
 
-  <title>ceph内部数据迁移办法 | Hexo</title>
+  <title>自动精简配置 | Hexo</title>
   
 
 
@@ -251,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/03/一种ceph的数据迁移方法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/07/自动精简配置/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -268,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ceph内部数据迁移办法</h1>
+          <h1 class="post-title" itemprop="name headline">自动精简配置</h1>
         
 
         <div class="post-meta">
@@ -280,8 +280,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-03T01:52:20+08:00">
-                2019-04-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-07T17:08:09+08:00">
+                2019-04-07
               </time>
             
 
@@ -303,8 +303,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/ceph/" itemprop="url" rel="index">
-                    <span itemprop="name">ceph</span>
+                  <a href="/categories/storage/" itemprop="url" rel="index">
+                    <span itemprop="name">storage</span>
                   </a>
                 </span>
 
@@ -321,8 +321,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/04/03/一种ceph的数据迁移方法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/03/一种ceph的数据迁移方法/" itemprop="commentCount"></span>
+                <a href="/2019/04/07/自动精简配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/07/自动精简配置/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -381,10 +381,10 @@
       
 
       
-        <h1 id="一种ceph下的数据迁移方法"><a href="#一种ceph下的数据迁移方法" class="headerlink" title="一种ceph下的数据迁移方法"></a>一种ceph下的数据迁移方法</h1><p>1、重新创建一套故障域、并给指定root绑定一个ruleset</p>
-<p>2、使用命令：ceph osd pool set $pool_name crush_rule $rule_name给资源池重新指定规则，即可完成数据迁移</p>
-<p>已经验证过，副本对副本 ec对ec均可完成数据迁移</p>
-
+        <h1 id="自动精简配置（Thin-provisioning）"><a href="#自动精简配置（Thin-provisioning）" class="headerlink" title="自动精简配置（Thin provisioning）"></a>自动精简配置（Thin provisioning）</h1><p>自动精简配置，有时也被称为”超额申请“，是一中重要的新兴存储技术。本文定义了自动精简配置，并介绍它的工作原理、使用局限和一些使用建议。</p>
+<p>如果应用程序所使用的存储空间已满，就会崩溃。因此，存储管理员通常分配比应用程序实际需要的存储空间更大的存储容量，以避免任何潜在的应用程序故障。这种做法为未来的增长提供了“headroom”（净空），并减少了应用程序出故障的风险。但却需要比实际更多的物理磁盘容量，造成浪费。</p>
+<p>自动精简配置软件无需提前分配用不到的磁盘容量，所以存储利用率更高 。常规手段预留出的存储空间通常称为：搁浅的存储 </p>
+<h2 id="通俗来说，自动精简配置就相当于在同一个房间里吹气球，只要房间里还有空隙，你就可以把气球吹大，是一种按需分配的存储技术"><a href="#通俗来说，自动精简配置就相当于在同一个房间里吹气球，只要房间里还有空隙，你就可以把气球吹大，是一种按需分配的存储技术" class="headerlink" title="通俗来说，自动精简配置就相当于在同一个房间里吹气球，只要房间里还有空隙，你就可以把气球吹大，是一种按需分配的存储技术"></a>通俗来说，自动精简配置就相当于在同一个房间里吹气球，只要房间里还有空隙，你就可以把气球吹大，是一种按需分配的存储技术</h2>
       
     </div>
     
@@ -401,7 +401,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ceph/" rel="tag"># ceph</a>
+            <a href="/tags/storage/" rel="tag"># storage</a>
           
         </div>
       
@@ -414,8 +414,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/03/搭建一个github hexo博客/" rel="next" title="how to make hexo blog">
-                <i class="fa fa-chevron-left"></i> how to make hexo blog
+              <a href="/2019/04/06/inet-pton/" rel="next" title="inet_pton">
+                <i class="fa fa-chevron-left"></i> inet_pton
               </a>
             
           </div>
@@ -423,10 +423,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/03/述职技巧/" rel="prev" title="ppt讲解技巧">
-                ppt讲解技巧 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -568,7 +564,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一种ceph下的数据迁移方法"><span class="nav-number">1.</span> <span class="nav-text">一种ceph下的数据迁移方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自动精简配置（Thin-provisioning）"><span class="nav-number">1.</span> <span class="nav-text">自动精简配置（Thin provisioning）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#通俗来说，自动精简配置就相当于在同一个房间里吹气球，只要房间里还有空隙，你就可以把气球吹大，是一种按需分配的存储技术"><span class="nav-number">1.1.</span> <span class="nav-text">通俗来说，自动精简配置就相当于在同一个房间里吹气球，只要房间里还有空隙，你就可以把气球吹大，是一种按需分配的存储技术</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -741,9 +737,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2019/04/03/一种ceph的数据迁移方法/';
-          this.page.identifier = '2019/04/03/一种ceph的数据迁移方法/';
-          this.page.title = 'ceph内部数据迁移办法';
+          this.page.url = 'http://yoursite.com/2019/04/07/自动精简配置/';
+          this.page.identifier = '2019/04/07/自动精简配置/';
+          this.page.title = '自动精简配置';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://jackdan.disqus.com/embed.js';
