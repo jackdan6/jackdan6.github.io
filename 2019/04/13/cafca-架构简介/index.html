@@ -86,15 +86,15 @@
 <meta property="og:description" content="Kafka:架构简介Kafka是一个开源的、分布式的、可分区的、可复制的基于日志提交的发布订阅消息系统。它具备以下特点： ·消息持久化： 为了从大数据中获取有价值的信息，任何信息的丢失都是负担不起的。Kafka使用了O(1)的磁盘结构设计，这样做即便是在要存储大体积的数据时也是可以提供稳定的性能。使用Kafka时，message会被存储并且会被复制以防止数据丢失。 ·高吞吐量： 设计是工作在普通的">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2019/04/13/cafca-架构简介/broker.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/13/cafca-架构简介/C:/hexo/source/_posts/cafca-架构简介/topic.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/13/cafca-架构简介/C:/hexo/source/_posts/cafca-架构简介/topic_and_broker.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/13/cafca-架构简介/C:/hexo/source/_posts/cafca-架构简介/partition.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/13/cafca-架构简介/C:/hexo/source/_posts/cafca-架构简介/segment.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/13/cafca-架构简介/topic.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/13/cafca-架构简介/topic_and_broker.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/13/cafca-架构简介/partition.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/13/cafca-架构简介/segment.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/13/cafca-架构简介/dirtribution.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/13/cafca-架构简介/real.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/13/cafca-架构简介/down.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/13/cafca-架构简介/架构图.png">
-<meta property="og:updated_time" content="2019-04-17T00:20:11.949Z">
+<meta property="og:updated_time" content="2019-04-17T00:23:21.339Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cafca 架构简介">
 <meta name="twitter:description" content="Kafka:架构简介Kafka是一个开源的、分布式的、可分区的、可复制的基于日志提交的发布订阅消息系统。它具备以下特点： ·消息持久化： 为了从大数据中获取有价值的信息，任何信息的丢失都是负担不起的。Kafka使用了O(1)的磁盘结构设计，这样做即便是在要存储大体积的数据时也是可以提供稳定的性能。使用Kafka时，message会被存储并且会被复制以防止数据丢失。 ·高吞吐量： 设计是工作在普通的">
@@ -401,17 +401,17 @@
 <p><img src="/2019/04/13/cafca-架构简介/broker.png" alt="架构图"></p>
 <p>一个机器上可以部署一个或者多个Broker，这多个Broker连接到相同的ZooKeeper就组成了Kafka集群</p>
 <h2 id="topic"><a href="#topic" class="headerlink" title="topic"></a>topic</h2><p>Kafka是一个发布订阅消息系统，它的逻辑结构如下：</p>
-<p><img src="/2019/04/13/cafca-架构简介/C:/hexo\source\_posts\cafca-架构简介\topic.png" alt="topic"></p>
+<p><img src="/2019/04/13/cafca-架构简介/topic.png" alt="topic"></p>
 <p>Topic 就是消息类别名，一个topic中通常放置一类消息。每个topic都有一个或者多个订阅者，也就是消息的消费者consumer。</p>
 <p>Producer将消息推送到topic，由订阅该topic的consumer从topic中拉取消息。</p>
 <h3 id="Topic-与broker"><a href="#Topic-与broker" class="headerlink" title="Topic 与broker"></a>Topic 与broker</h3><p>一个Broker上可以创建一个或者多个Topic。同一个topic可以在同一集群下的多个Broker中分布。</p>
-<p><img src="/2019/04/13/cafca-架构简介/C:/hexo\source\_posts\cafca-架构简介\topic_and_broker.png" alt="topic_broker"></p>
+<p><img src="/2019/04/13/cafca-架构简介/topic_and_broker.png" alt="topic_broker"></p>
 <h3 id="partitioon-log"><a href="#partitioon-log" class="headerlink" title="partitioon log"></a>partitioon log</h3><p>Kafka会为每个topic维护了多个分区（partition），每个分区会映射到一个逻辑的日志（log）文件：</p>
-<p><img src="/2019/04/13/cafca-架构简介/C:/hexo\source\_posts\cafca-架构简介\partition.png" alt="partition"></p>
+<p><img src="/2019/04/13/cafca-架构简介/partition.png" alt="partition"></p>
 <p>​    每当一个message被发布到一个topic上的一个partition，broker应会将该message追加到这个逻辑log文件的最后一个segment上。这些segments 会被flush到磁盘上。Flush时可以按照时间来进行，也可以按照message 数来执行。</p>
 <p>​    每个partition都是一个有序的、不可变的结构化的提交日志记录的序列。在每个partition中每一条日志记录都会被分配一个序号——通常称为offset，offset在partition内是唯一的。论点逻辑文件会被化分为多个文件segment（每个segment的大小一样的）。</p>
 <p>​         Broker集群将会保留所有已发布的message records，不管这些消息是否已被消费。保留时间依赖于一个可配的保留周期。例如：如果设置了保留策略是2day，那么每一条消息发布两天内是被保留的，在这个2day的保留时间内，消息是可以被消费的。过期后不再保留。</p>
-<p><img src="/2019/04/13/cafca-架构简介/C:/hexo\source\_posts\cafca-架构简介\segment.png" alt="segment"></p>
+<p><img src="/2019/04/13/cafca-架构简介/segment.png" alt="segment"></p>
 <h3 id="Partition-distribution"><a href="#Partition-distribution" class="headerlink" title="Partition distribution"></a>Partition distribution</h3><p>​    日志分区是分布式的存在于一个kafka集群的多个broker上。每个partition会被复制多份存在于不同的broker上。这样做是为了容灾。具体会复制几份，会复制到哪些broker上，都是可以配置的。经过相关的复制策略后，每个topic在每个broker上会驻留一到多个partition。如图：</p>
 <p><img src="/2019/04/13/cafca-架构简介/dirtribution.png" alt="distribution"></p>
 <p>对于同一个partition，它所在任何一个broker，都有能扮演两种角色：leader、follower。</p>
