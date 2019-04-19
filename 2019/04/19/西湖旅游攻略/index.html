@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="ceph,">
+  <meta name="keywords" content="西湖,">
 
 
 
@@ -77,21 +77,24 @@
 
 
 
-<meta name="description" content="一、缓存池原理 缓存分层特性也是在Ceph的Firefly版中正式发布的，这也是Ceph的Firefly版本中被谈论最多的一个特性。缓存分层是在更快的磁盘（通常是SSD），上创建一个Ceph池。这个缓存池应放置在一个常规的复制池或erasure池的前端，这样所有的客户端I/O操作都首先由缓存池处理。之后，再将数据写回到现有的数据池中。客户端能够在缓存池上享受高性能，而它们的数据显而易见最终是被写入">
-<meta name="keywords" content="ceph">
+<meta name="description" content="西湖旅游攻略周五（今天），晚上六点半左右下班，去超市购买一些小零食。收拾准备一下大概九点出发去杭州东站，晚上打车回来，早点休息。 第二天早上八点左右起床，收拾一下，去对面早餐店吃点东西，然后去地铁站（江陵路 地铁站B口，距离是1公里，建议走过去，体会一下杭州建筑感受）坐到   凤起路 地铁站B口然后步行到杭州景区 先附上旅游地图：   旅游顺序建议是：断桥残雪-&amp;gt;平湖秋月-&amp;gt;曲院风荷-">
+<meta name="keywords" content="西湖">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ceph_cache_tier">
-<meta property="og:url" content="http://yoursite.com/2019/04/06/ceph-cache-tier/index.html">
+<meta property="og:title" content="西湖旅游攻略">
+<meta property="og:url" content="http://yoursite.com/2019/04/19/西湖旅游攻略/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、缓存池原理 缓存分层特性也是在Ceph的Firefly版中正式发布的，这也是Ceph的Firefly版本中被谈论最多的一个特性。缓存分层是在更快的磁盘（通常是SSD），上创建一个Ceph池。这个缓存池应放置在一个常规的复制池或erasure池的前端，这样所有的客户端I/O操作都首先由缓存池处理。之后，再将数据写回到现有的数据池中。客户端能够在缓存池上享受高性能，而它们的数据显而易见最终是被写入">
+<meta property="og:description" content="西湖旅游攻略周五（今天），晚上六点半左右下班，去超市购买一些小零食。收拾准备一下大概九点出发去杭州东站，晚上打车回来，早点休息。 第二天早上八点左右起床，收拾一下，去对面早餐店吃点东西，然后去地铁站（江陵路 地铁站B口，距离是1公里，建议走过去，体会一下杭州建筑感受）坐到   凤起路 地铁站B口然后步行到杭州景区 先附上旅游地图：   旅游顺序建议是：断桥残雪-&amp;gt;平湖秋月-&amp;gt;曲院风荷-">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2019/04/06/ceph-cache-tier/640.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/06/ceph-cache-tier/640.jpg">
-<meta property="og:updated_time" content="2019-04-06T06:31:09.088Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/19/西湖旅游攻略/西湖.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/04/19/西湖旅游攻略/timg7MS09M1H.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/04/19/西湖旅游攻略/X6b8nBI7R5lXdmtFyGaU_fC60dqLH8vgh8sOMhqHFD6pRKzSBzQnLPwzWURFZUAvuzFvxlbkWx5uwqY2qcjixFEuLYk00OmSS1IdNpm8K8twhW7bzr4O88Ivp4FuDG0SfCF2ubeX.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/04/19/西湖旅游攻略/aZvrWSpk1f-99Jluvo2fxWzXSn9QwFG2H2Zc188ToRdoBi-EqPUR7-9iHAYTHY1luzFvxlbkWx5uwqY2qcjixFEuLYk00OmSS1IdNpm8K8twhW7bzr4O88Ivp4FuDG0SfCF2ubeX.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/04/19/西湖旅游攻略/fKAZ15ZNCGN9PfJWcObnUMp7kKy78ruGzv5GerPTwDIN56-_QiKuOvyio1OOxsRtuzFvxlbkWx5uwqY2qcjixFEuLYk00OmSS1IdNpm8K8twhW7bzr4O88Ivp4FuDG0SfCF2ubeX.jpg">
+<meta property="og:updated_time" content="2019-04-19T05:55:46.254Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ceph_cache_tier">
-<meta name="twitter:description" content="一、缓存池原理 缓存分层特性也是在Ceph的Firefly版中正式发布的，这也是Ceph的Firefly版本中被谈论最多的一个特性。缓存分层是在更快的磁盘（通常是SSD），上创建一个Ceph池。这个缓存池应放置在一个常规的复制池或erasure池的前端，这样所有的客户端I/O操作都首先由缓存池处理。之后，再将数据写回到现有的数据池中。客户端能够在缓存池上享受高性能，而它们的数据显而易见最终是被写入">
-<meta name="twitter:image" content="http://yoursite.com/2019/04/06/ceph-cache-tier/640.png">
+<meta name="twitter:title" content="西湖旅游攻略">
+<meta name="twitter:description" content="西湖旅游攻略周五（今天），晚上六点半左右下班，去超市购买一些小零食。收拾准备一下大概九点出发去杭州东站，晚上打车回来，早点休息。 第二天早上八点左右起床，收拾一下，去对面早餐店吃点东西，然后去地铁站（江陵路 地铁站B口，距离是1公里，建议走过去，体会一下杭州建筑感受）坐到   凤起路 地铁站B口然后步行到杭州景区 先附上旅游地图：   旅游顺序建议是：断桥残雪-&amp;gt;平湖秋月-&amp;gt;曲院风荷-">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/19/西湖旅游攻略/西湖.jpg">
 
 
 
@@ -121,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/06/ceph-cache-tier/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/19/西湖旅游攻略/">
 
 
 
 
 
-  <title>ceph_cache_tier | Hexo</title>
+  <title>西湖旅游攻略 | Hexo</title>
   
 
 
@@ -254,7 +257,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/06/ceph-cache-tier/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/19/西湖旅游攻略/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -271,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ceph_cache_tier</h1>
+          <h1 class="post-title" itemprop="name headline">西湖旅游攻略</h1>
         
 
         <div class="post-meta">
@@ -283,8 +286,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-06T13:37:31+08:00">
-                2019-04-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-19T08:06:46+08:00">
+                2019-04-19
               </time>
             
 
@@ -306,8 +309,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/ceph/" itemprop="url" rel="index">
-                    <span itemprop="name">ceph</span>
+                  <a href="/categories/旅游/" itemprop="url" rel="index">
+                    <span itemprop="name">旅游</span>
                   </a>
                 </span>
 
@@ -324,8 +327,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/04/06/ceph-cache-tier/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/06/ceph-cache-tier/" itemprop="commentCount"></span>
+                <a href="/2019/04/19/西湖旅游攻略/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/19/西湖旅游攻略/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -384,90 +387,22 @@
       
 
       
-        <p><strong>一、缓存池原理</strong></p>
-<p>缓存分层特性也是在Ceph的Firefly版中正式发布的，这也是Ceph的Firefly版本中被谈论最多的一个特性。缓存分层是在更快的磁盘（通常是SSD），上创建一个Ceph池。这个缓存池应放置在一个常规的复制池或erasure池的前端，这样所有的客户端I/O操作都首先由缓存池处理。之后，再将数据写回到现有的数据池中。客户端能够在缓存池上享受高性能，而它们的数据显而易见最终是被写入到常规池中的。</p>
-<p> <img src="/2019/04/06/ceph-cache-tier/640.png" alt="架构图"></p>
-<p>一般来说，缓存层构建在昂贵/速度更快的SSD磁盘上，这样才能为客户提供更好的I/O性能。在缓存池后端通常是存储层，它由复制或者erasure类型的HDD组成。在这种类型的设置中，客户端将I/O请求提交到缓存池，不管它是一个读或写操作，它的请求都能够立即获得响应。速度更快的缓存层为客户端请求提供服务。一段时间后，缓存层将所有数据写回备用的存储层，以便它可以缓存来自客户端的新请求。在缓存层和存储层之间的数据迁移都是自动触发且对客户端是透明的。缓存分层能以两种模式进行配置。</p>
-<p> <strong>writeback模式</strong>：当Ceph的缓存分层配置为writeback模式时，Ceph客户端将数据写到缓存层类型的池，也就是速度更快的池，因此能够立即接收写入确认。基于你为缓存层设置的flushing/evicting策略，数据将从缓存层迁移到存储层，并最终由缓存分层代理将其从缓存层中删除。处理来自客户端的读操作时，首先由缓存分层代理将数据从存储层迁移到缓存层，然后再把它提供给客户。直到数据变得不再活跃或成为冷数据，否则它将一直保留在缓存层中。</p>
-<p><strong>read-only模式</strong>：当Ceph的缓存分层配置为read-only模式时，它只适用于处理客户端的读操作。客户端的写操作不涉及缓存分层，所有的客户端写都在存储层上完成。在处理来自客户端的读操作时，缓存分层代理将请求的数据从存储层复制到缓存层。基于你为缓存层配置的策略，不活跃的对象将会从缓存层中删除。这种方法非常适合多个客户端需要读取大量类似数据的场景。</p>
-<p>缓存层是在速度更快的物理磁盘（通常是SSD）上实现的，它在使用HDD构建的速度较慢的常规池前部署一个快速的缓存层。在本节中，我们将创建两个独立的池（一个缓存池和一个常规），分别用作缓存层和存储层。</p>
-<p><img src="/2019/04/06/ceph-cache-tier/640.jpg" alt="部署图"></p>
-<p>二、理论与实践相结合**</p>
-<p>1、下面开始配置以cache作为sata-pool的前端高速缓冲池。</p>
-<p>1）新建缓冲池，其中，cache作为sata-pool的前端高速缓冲池。</p>
-<p># ceph osd pool create storage 64</p>
-<p>pool ‘storage’ created</p>
-<p># ceph osd pool create cache 64</p>
-<p>pool ‘cache’ created </p>
-<p>2）设定缓冲池读写策略为写回模式。</p>
-<p>ceph osd tier cache-mode cache writeback </p>
-<p>3）把缓存层挂接到后端存储池上 </p>
-<p># ceph osd tier add storage cache</p>
-<p>pool ‘cache’ is now (or already was) a tierof ‘storage’ </p>
-<p>4）将客户端流量指向到缓存存储池 </p>
-<p># ceph osd tier set-overlay storage cache</p>
-<p>overlay for ‘storage’ is now (or alreadywas) ‘cache’</p>
-<p><strong>2、调整Cache tier配置</strong> </p>
-<p>1）设置缓存层hit_set_type使用bloom过滤器</p>
-<p># ceph osd pool set cache hit_set_type bloom</p>
-<p>set pool 27 hit_set_type to bloom</p>
-<p>命令格式如下：</p>
-<p>ceph osd pool set {cachepool} {key} {value} </p>
-<p>关于Bloom-Filte算法原理可参见：</p>
-<p><a href="https://blog.csdn.net/jiaomeng/article/details/1495500" target="_blank" rel="noopener">https://blog.csdn.net/jiaomeng/article/details/1495500</a></p>
-<p>2）设置hit_set_count、hit_set_period</p>
-<p># ceph osd pool set cache hit_set_count 1</p>
-<p>set pool 27 hit_set_count to 1</p>
-<p># ceph osd pool set cache hit_set_period3600</p>
-<p>set pool 27 hit_set_period to 3600</p>
-<p># ceph osd pool set cache target_max_bytes1000000000000</p>
-<p>set pool 27 target_max_bytes to1000000000000</p>
-<p>默认情况下缓冲池基于数据的修改时间来进行确定是否命中缓存，也可以设定热度数hit_set_count和热度周期hit_set_period，以及最大缓冲数据target_max_bytes。</p>
-<p>hit_set_count 和 hit_set_period 选项分别定义了 HitSet 覆盖的时间区间、以及保留多少个这样的 HitSet，保留一段时间以来的访问记录，这样 Ceph 就能判断一客户端在一段时间内访问了某对象一次、还是多次（存活期与热度）。</p>
-<p>3）设置min_read_recency_for_promote、min_write_recency_for_promote</p>
-<p># ceph osd pool set cachemin_read_recency_for_promote 1</p>
-<p>set pool 27 min_read_recency_for_promote to1</p>
-<p># ceph osd pool set cachemin_write_recency_for_promote 1</p>
-<p>set pool 27 min_write_recency_for_promote to 1</p>
-<p><strong>缓存池容量控制</strong></p>
-<p>先讲解个概念缓存池代理层两大主要操作</p>
-<p>·刷写（flushing）：负责把已经被修改的对象写入到后端慢存储，但是对象依然在缓冲池。</p>
-<p>·驱逐（evicting）：负责在缓冲池里销毁那些没有被修改的对象。</p>
-<p>缓冲池代理层进行刷写和驱逐的操作，主要和缓冲池本身的容量有关。在缓冲池里，如果被修改的数据达到一个阈值（容量百分比），缓冲池代理就开始把这些数据刷写到后端慢存储。当缓冲池里被修改的数据达到40%时，则触发刷写动作。</p>
-<p># ceph osd pool set cachecache_target_dirty_ratio 0.4</p>
-<p>当被修改的数据达到一个确定的阈值（容量百分比），刷写动作将会以高速运作。例如，当缓冲池里被修改数据达到60%时候，则高速刷写。</p>
-<p># ceph osd pool set cachecache_target_dirty_high_ratio 0.6 </p>
-<p>缓冲池的代理将会触发驱逐操作，目的是释放缓冲区空间。例如，当缓冲池里的容量使用达到80%时候，则触发驱逐操作。 </p>
-<p># ceph osd pool set cachecache_target_full_ratio 0.8 </p>
-<p>除了上面提及基于缓冲池的百分比来判断是否触发刷写和驱逐，还可以指定确定的数据对象数量或者确定的数据容量。对缓冲池设定最大的数据容量，来强制触发刷写和驱逐操作。</p>
-<p># ceph osd pool set cache target_max_bytes1073741824 </p>
-<p>同时，也可以对缓冲池设定最大的对象数量。在默认情况下，RBD的默认对象大小为4MB，1GB容量包含256个4MB的对象，则可以设定：</p>
-<p># ceph osd pool set cache target_max_objects 256 </p>
-<p>4）缓冲池的数据刷新问题在缓冲池里，对象有最短的刷写周期。若被修改的对象在缓冲池里超过最短周期，将会被刷写到慢存储池。</p>
-<p># ceph osd pool set cachecache_min_flush_age 600</p>
-<p>注意：单位是分钟 </p>
-<p>设定对象最短的驱逐周期。</p>
-<p># ceph osd pool set cachecache_min_evict_age 1800 </p>
-<p><strong>3、删除缓存层</strong></p>
-<p>删除readonly缓存</p>
-<p>1）把缓存模式改为 none 即可禁用。 </p>
-<p>ceph osd tier cache-mode {cachepool} none </p>
-<p>2）去除后端存储池的缓存池。 </p>
-<p>ceph osd tier remove {storagepool}{cachepool} </p>
-<p>删除writeback缓存</p>
-<p>1）把缓存模式改为 forward ，这样新的和更改过的对象将直接刷回到后端存储池</p>
-<p># ceph osd tier cache-mode cache forward–yes-i-really-mean-it</p>
-<p>set cache-mode for pool ‘cache’ to forward</p>
-<p>2）确保缓存池已刷回，可能要等数分钟 </p>
-<p># rados ls -p cache</p>
-<p>可以通过以下命令进行手动刷回</p>
-<p># rados -p cache cache-flush-evict-all</p>
-<p>3）取消流量指向缓存池 </p>
-<p># ceph osd tier remove-overlay storage</p>
-<p>there is now (or already was) no overlayfor ‘storage’</p>
-<p>4）剥离缓存池</p>
-<p># ceph osd tier remove storage cache</p>
-<p>pool ‘cache’ is now (or already was) not atier of ‘storage’</p>
+        <h1 id="西湖旅游攻略"><a href="#西湖旅游攻略" class="headerlink" title="西湖旅游攻略"></a>西湖旅游攻略</h1><p>周五（今天），晚上六点半左右下班，去超市购买一些小零食。收拾准备一下大概九点出发去杭州东站，晚上打车回来，早点休息。</p>
+<p>第二天早上八点左右起床，收拾一下，去对面早餐店吃点东西，然后去地铁站（江陵路 地铁站B口，距离是1公里，建议走过去，体会一下杭州建筑感受）坐到   凤起路 地铁站B口然后步行到杭州景区</p>
+<p>先附上旅游地图：</p>
+<p><img src="/2019/04/19/西湖旅游攻略/西湖.jpg" alt="西湖"></p>
+<p><img src="/2019/04/19/西湖旅游攻略/timg7MS09M1H.jpg" alt="西湖"></p>
+<p>旅游顺序建议是：断桥残雪-&gt;平湖秋月-&gt;曲院风荷-&gt;双峰插云-&gt;苏堤春晓-&gt;花港观鱼-&gt;三潭印月-&gt;南屏晚钟-&gt;雷锋夕照-&gt;柳浪闻莺</p>
+<p>山外山餐厅在“曲院风荷”附近，到时候饿了可以先吃东西，里面的特色菜是 八宝鱼头，东坡肉，龙井虾仁。</p>
+<p>另外感觉西湖最美的就是湖了，在雷锋塔附近，可以乘坐观光船先上 三潭映月 那个小岛 然后直接乘船返回出发地，这样西湖主要的地方算是逛遍了</p>
+<p>晚上回来稍微忍忍，应该会很饿，我包里准备了各类零食小吃，住的地方有很多烤肉店。有一家具体还不错，可以去体验一下，然后晚上赶紧躺会儿，一天下来至少要走十五公里路的，先做好准备哟！！！</p>
+<p>第二天早上大概七点多起来，西湖附近 有个 吴山广场，哪里有很多小东西可以买，可以买点东西给你北京的小伙伴，最主要的是吴山上可以一览整个西湖美景，那个山不高，一两百米的样子。可以在山顶的亭子里坐一会儿。大概10点半，在吴山广场那里找点吃的，然后直接出发去杭州东站</p>
+<p>八宝鱼头：</p>
+<p><img src="/2019/04/19/西湖旅游攻略/X6b8nBI7R5lXdmtFyGaU_fC60dqLH8vgh8sOMhqHFD6pRKzSBzQnLPwzWURFZUAvuzFvxlbkWx5uwqY2qcjixFEuLYk00OmSS1IdNpm8K8twhW7bzr4O88Ivp4FuDG0SfCF2ubeX.jpg" alt="八宝鱼头"></p>
+<p>东坡肉：</p>
+<p><img src="/2019/04/19/西湖旅游攻略/aZvrWSpk1f-99Jluvo2fxWzXSn9QwFG2H2Zc188ToRdoBi-EqPUR7-9iHAYTHY1luzFvxlbkWx5uwqY2qcjixFEuLYk00OmSS1IdNpm8K8twhW7bzr4O88Ivp4FuDG0SfCF2ubeX.jpg" alt="东坡肉"></p>
+<p>龙井虾仁：</p>
+<p><img src="/2019/04/19/西湖旅游攻略/fKAZ15ZNCGN9PfJWcObnUMp7kKy78ruGzv5GerPTwDIN56-_QiKuOvyio1OOxsRtuzFvxlbkWx5uwqY2qcjixFEuLYk00OmSS1IdNpm8K8twhW7bzr4O88Ivp4FuDG0SfCF2ubeX.jpg" alt="龙井虾仁"></p>
 
       
     </div>
@@ -485,7 +420,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ceph/" rel="tag"># ceph</a>
+            <a href="/tags/西湖/" rel="tag"># 西湖</a>
           
         </div>
       
@@ -498,8 +433,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/03/述职技巧/" rel="next" title="ppt讲解技巧">
-                <i class="fa fa-chevron-left"></i> ppt讲解技巧
+              <a href="/2019/04/18/mongodb/" rel="next" title="mongodb">
+                <i class="fa fa-chevron-left"></i> mongodb
               </a>
             
           </div>
@@ -507,10 +442,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/06/typora-use-skill/" rel="prev" title="typora_use_skill">
-                typora_use_skill <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -572,8 +503,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -633,6 +573,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#西湖旅游攻略"><span class="nav-number">1.</span> <span class="nav-text">西湖旅游攻略</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -800,9 +756,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2019/04/06/ceph-cache-tier/';
-          this.page.identifier = '2019/04/06/ceph-cache-tier/';
-          this.page.title = 'ceph_cache_tier';
+          this.page.url = 'http://yoursite.com/2019/04/19/西湖旅游攻略/';
+          this.page.identifier = '2019/04/19/西湖旅游攻略/';
+          this.page.title = '西湖旅游攻略';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://jackdan.disqus.com/embed.js';
