@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="bigdata,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="mongodb使用命令总结登陆/home/soft/NodeServer/mongodb/bin/                    mongodb安装路径：./mongo 10.14.101.221:27017                        进入开发环境use admin                                        切换数据库，如果不存在则创">
+<meta name="keywords" content="bigdata">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mongodb使用命令总结">
+<meta property="og:url" content="http://yoursite.com/2019/04/19/mongodb使用命令总结/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="mongodb使用命令总结登陆/home/soft/NodeServer/mongodb/bin/                    mongodb安装路径：./mongo 10.14.101.221:27017                        进入开发环境use admin                                        切换数据库，如果不存在则创">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-21T11:32:03.125Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mongodb使用命令总结">
+<meta name="twitter:description" content="mongodb使用命令总结登陆/home/soft/NodeServer/mongodb/bin/                    mongodb安装路径：./mongo 10.14.101.221:27017                        进入开发环境use admin                                        切换数据库，如果不存在则创">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/19/mongodb使用命令总结/">
+
+
+
+
+
+  <title>mongodb使用命令总结 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/19/mongodb使用命令总结/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mongodb使用命令总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-19T22:59:37+08:00">
+                2019-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mongodb/" itemprop="url" rel="index">
+                    <span itemprop="name">mongodb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/19/mongodb使用命令总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/19/mongodb使用命令总结/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="mongodb使用命令总结"><a href="#mongodb使用命令总结" class="headerlink" title="mongodb使用命令总结"></a>mongodb使用命令总结</h1><h2 id="登陆"><a href="#登陆" class="headerlink" title="登陆"></a>登陆</h2><p>/home/soft/NodeServer/mongodb/bin/                    mongodb安装路径：<br>./mongo 10.14.101.221:27017                        进入开发环境<br>use admin                                        切换数据库，如果不存在则创建<br>db.auth(“lightsystem”,”abc12345”)                        登陆有密码的用户<br>show dbs                                            显示所有数据库<br>dbs                                                当前所在的数据库<br>mongos&gt; run(“ls”,”-l”,”/home/robin”)                    在mongo中环境下执行linux系统命令<br>load(“xxx.js”)                                        执行js脚本<br>db.static_human.find({}).skip(290)                        跳转到具体行数获取信息<br>db.getName()                                        显示当前使用的数据库名称<br>.pretty()                                            格式化输出</p>
+<h2 id="数据导入"><a href="#数据导入" class="headerlink" title="数据导入"></a>数据导入</h2><p>db.users.insert({user_id:”abc123”,age:55,status:”A”})        向数据库中集合写入数据，如果没有就创建<br>p={name:”王丹”，age:18}                            或者采用赋值的方式写入数据<br>db.person.insert(p)<br>db.person.save(p)                                    insert和save功能一样<br>for(var i=1;i&lt;5;i++) db.person.insert({“name”:”王丹”,”age”:i}})    mongodb内部支持js，可以使用js命令</p>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>db.user.remove({“name”:”zhangshan”})                    删除匹配字段<br>db.collection1.remove({age:7,name:”xiaomu”})            删除age为7，name为xiaomu的数据<br>db.user.remove({})                                    删除所有数据<br>db.user.drop()                                        删除集合<br>db.dropDatabase()                                    进入具体数据库中执行，可删除档期数据库</p>
+<h2 id="索引相关"><a href="#索引相关" class="headerlink" title="索引相关"></a>索引相关</h2><p>db.col.getIndexes()                                    查看集合索引<br>db.col.totalIndexSize()                                查看集合索引大小<br>db.col.dropIndexes()                                删除集合所有索引<br>db.col.dropIndex(“索引名称”)                            删除集合指定索引<br>db.c3.ensureIndex({age:1})                            为age字段建普通索引<br>db.c3.dropIndex({age:1})                            删除age字段的索引<br>db.c3.ensureIndex({age:1},{unique:true})                为age字段建唯一索引，在为字段建了唯一索引后就不能再添加相同值的记录了</p>
+<h2 id="数据库查询相关功能"><a href="#数据库查询相关功能" class="headerlink" title="数据库查询相关功能"></a>数据库查询相关功能</h2><p>db.aaa.find({“age”:{$gt:17,$lt:20}})                         $gt 大于，$lt 小于 ,$gte 大于等于,$lte 小于等于,$ne 不等于<br>db.aaa.find().limit(2).skip(0).sort({device_type:-1})         1：表示升序排序，-1：表示降序排序<br>db.aaa.find({},{version:1})                            仅获取version为1的信息条<br>db.news.find( {}, { id: 1, title: 1 } )                        只输出id和title字段，第一参数为查询条件，空代表查询所有<br>db.news.find( {}, {content: 0 } )                        除过content字段，输出其余字段<br>db.inventory.find( { type: ‘food’ } )                        返回type字段为food的信息段<br>db.inventory.find( { type: ‘food’ }, { item: 1, qty: 1, _id:0 } )    指定某些字段，排除某些字段<br>db.collection1.findOne()                                查询集合的第一条数据</p>
+<p>db.collection1.find({price:{$all:[1,2]}})                    (包含。。并且包含。。）此处price是个数组，此方法查询所有price包含1和2的数据<br>db.collection1.find({price:{$in:[1,2]}})                    (包含。。或者包含。。）查询price中含有1或者2的数据<br>db.collection1.find({price:{$nin:[1,2]}})                    (不包含。。并且不包含。。）查询price中不含有1并且不含有2的数据<br>db.collection1.find({$or:[{name:”xiaomu”},{price:{$in:[3]}}]})    (。。或者。。）查询name为xiaomu或者价格包含3的数据<br>db.collection1.find({$nor:[{name:”xiaomu”},{name:”xiaoli”}]})    (既不也不）查询name不为xiaomu或者name不为xiaoli的数据</p>
+<p>db.c2.find({hight:{$exists:1}})                            查询存在hight字段的数据<br>db.users.count()                                    当前数据库中数据条数</p>
+<h2 id="集合相关"><a href="#集合相关" class="headerlink" title="集合相关"></a>集合相关</h2><p>db.createCollection(“collectionName”)                    创建集合<br>show collections                                    查看当前数据库中的集合<br>db.collection1.count()                                统计集合collection1中的数据数量<br>db.createCollection(“collectionName”,{capped:true,size:10000,max:100})    size指定集合大小，单位为KB，max指定文档数量</p>
+<h2 id="数据备份与恢复"><a href="#数据备份与恢复" class="headerlink" title="数据备份与恢复"></a>数据备份与恢复</h2><p>备份：mongodump -h dbhost -d dbname -o dbdirectory<br>-h：mongodb所在服务器地址，如127.0.0.1，当然也可以指定端口号：127.0.0.1:27017<br>-d：需要备份的数据库实例，如：test<br>-o：需要备份的数据存放的位置，例如：d:\data (如果没有则自动创建)<br>恢复：mongorestore -h dbhost -d dbname -directoryperdb dbdirectory<br>-h：mongodb所在服务器地址，如127.0.0.1，当然也可以指定端口号：127.0.0.1:27017<br>-d：需要备份的数据库实例，如：test，此名称也可以和备份的时候不一样<br>-directoryperdb ：备份数据所在的位置，例如：d:\data<br>注意：恢复时要在退出mongo命令行状态下执行</p>
+<h2 id="导入与导出"><a href="#导入与导出" class="headerlink" title="导入与导出"></a>导入与导出</h2><p>导出：mongoexport -h dbhost -d dbname -c collectionName -o output<br>-h：数据库地址<br>-d：指明使用的库<br>-c：指明要导出的集合<br>-o：指明要导出的文件路径加文件名，文件名可以是txt、word、excel等多种文件格式<br>导入：mongoimport -h dbhost -d dbname -c collectionname 文件的地址路径<br>-h：数据库地址<br>-d：指明使用的库<br>-c：指明要导出的集合<br>注意：导入时要在退出mongo命令行状态下执行，导入导出与数据备份和恢复相似</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/bigdata/" rel="tag"># bigdata</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/19/kafka安装/" rel="next" title="kafka安装">
+                <i class="fa fa-chevron-left"></i> kafka安装
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/19/mongodb安装记录/" rel="prev" title="mongodb安装记录">
+                mongodb安装记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mongodb使用命令总结"><span class="nav-number">1.</span> <span class="nav-text">mongodb使用命令总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#登陆"><span class="nav-number">1.1.</span> <span class="nav-text">登陆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据导入"><span class="nav-number">1.2.</span> <span class="nav-text">数据导入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除"><span class="nav-number">1.3.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引相关"><span class="nav-number">1.4.</span> <span class="nav-text">索引相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库查询相关功能"><span class="nav-number">1.5.</span> <span class="nav-text">数据库查询相关功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合相关"><span class="nav-number">1.6.</span> <span class="nav-text">集合相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据备份与恢复"><span class="nav-number">1.7.</span> <span class="nav-text">数据备份与恢复</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#导入与导出"><span class="nav-number">1.8.</span> <span class="nav-text">导入与导出</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://jackdan.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2019/04/19/mongodb使用命令总结/';
+          this.page.identifier = '2019/04/19/mongodb使用命令总结/';
+          this.page.title = 'mongodb使用命令总结';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://jackdan.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
