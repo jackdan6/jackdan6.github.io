@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="C,">
+  <meta name="keywords" content="bigdata,">
 
 
 
@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="C语言库函数—使用inet_pton判断ip的合法性函数原型：int inet_pton(int af,const char src,void dst) 参数解析：af 地址簇​    AF_INET： ​    src为指向字符型的地址(xxx.xxx.xxx.xxx)，函数将该地址转化为in_addr的结构体，并复制在*dst中 ​    AF_INET6： ​    src为指向IPV6的地">
-<meta name="keywords" content="C">
+<meta name="description" content="mongodb 索引介绍说明复合索引：命令：db.test.ensureIndex({“username”:1, “age”:-1}) 含义：该索引被创建后:    1、基于username和age的查询将会用到该索引    2、基于username的查询会用到该索引    3、基于age的查询将不会用到该复合索引。因此可以说，如果想用到复合索引，必须在查询条件中包含复合索引中的前N个索引列">
+<meta name="keywords" content="bigdata">
 <meta property="og:type" content="article">
-<meta property="og:title" content="inet_pton">
-<meta property="og:url" content="http://yoursite.com/2019/04/06/inet-pton/index.html">
+<meta property="og:title" content="mongodb_索引说明">
+<meta property="og:url" content="http://yoursite.com/2019/04/23/mongodb-索引说明/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="C语言库函数—使用inet_pton判断ip的合法性函数原型：int inet_pton(int af,const char src,void dst) 参数解析：af 地址簇​    AF_INET： ​    src为指向字符型的地址(xxx.xxx.xxx.xxx)，函数将该地址转化为in_addr的结构体，并复制在*dst中 ​    AF_INET6： ​    src为指向IPV6的地">
+<meta property="og:description" content="mongodb 索引介绍说明复合索引：命令：db.test.ensureIndex({“username”:1, “age”:-1}) 含义：该索引被创建后:    1、基于username和age的查询将会用到该索引    2、基于username的查询会用到该索引    3、基于age的查询将不会用到该复合索引。因此可以说，如果想用到复合索引，必须在查询条件中包含复合索引中的前N个索引列">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-07T06:34:45.373Z">
+<meta property="og:updated_time" content="2019-04-24T23:55:57.070Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="inet_pton">
-<meta name="twitter:description" content="C语言库函数—使用inet_pton判断ip的合法性函数原型：int inet_pton(int af,const char src,void dst) 参数解析：af 地址簇​    AF_INET： ​    src为指向字符型的地址(xxx.xxx.xxx.xxx)，函数将该地址转化为in_addr的结构体，并复制在*dst中 ​    AF_INET6： ​    src为指向IPV6的地">
+<meta name="twitter:title" content="mongodb_索引说明">
+<meta name="twitter:description" content="mongodb 索引介绍说明复合索引：命令：db.test.ensureIndex({“username”:1, “age”:-1}) 含义：该索引被创建后:    1、基于username和age的查询将会用到该索引    2、基于username的查询会用到该索引    3、基于age的查询将不会用到该复合索引。因此可以说，如果想用到复合索引，必须在查询条件中包含复合索引中的前N个索引列">
 
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/06/inet-pton/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/23/mongodb-索引说明/">
 
 
 
 
 
-  <title>inet_pton | Hexo</title>
+  <title>mongodb_索引说明 | Hexo</title>
   
 
 
@@ -251,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/06/inet-pton/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/23/mongodb-索引说明/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -268,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">inet_pton</h1>
+          <h1 class="post-title" itemprop="name headline">mongodb_索引说明</h1>
         
 
         <div class="post-meta">
@@ -280,8 +280,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-06T16:32:19+08:00">
-                2019-04-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-23T21:01:25+08:00">
+                2019-04-23
               </time>
             
 
@@ -303,8 +303,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/C库函数/" itemprop="url" rel="index">
-                    <span itemprop="name">C库函数</span>
+                  <a href="/categories/mongodb/" itemprop="url" rel="index">
+                    <span itemprop="name">mongodb</span>
                   </a>
                 </span>
 
@@ -321,8 +321,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/04/06/inet-pton/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/06/inet-pton/" itemprop="commentCount"></span>
+                <a href="/2019/04/23/mongodb-索引说明/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/23/mongodb-索引说明/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -381,19 +381,14 @@
       
 
       
-        <h1 id="C语言库函数—使用inet-pton判断ip的合法性"><a href="#C语言库函数—使用inet-pton判断ip的合法性" class="headerlink" title="C语言库函数—使用inet_pton判断ip的合法性"></a>C语言库函数—使用inet_pton判断ip的合法性</h1><h2 id="函数原型："><a href="#函数原型：" class="headerlink" title="函数原型："></a>函数原型：</h2><p>int inet_pton(int af,const char <em>src,void </em>dst)</p>
-<h2 id="参数解析："><a href="#参数解析：" class="headerlink" title="参数解析："></a>参数解析：</h2><h3 id="af-地址簇"><a href="#af-地址簇" class="headerlink" title="af 地址簇"></a>af 地址簇</h3><p>​    AF_INET：</p>
-<p>​    src为指向字符型的地址(xxx.xxx.xxx.xxx)，函数将该地址转化为in_addr的结构体，并复制在*dst中</p>
-<p>​    AF_INET6：</p>
-<p>​    src为指向IPV6的地址，函数将该地址转化为in6_addr结构体，并复制在*dst中</p>
-<h3 id="src-地址来源"><a href="#src-地址来源" class="headerlink" title="src 地址来源"></a>src 地址来源</h3><h3 id="dst-接收转换后的数据"><a href="#dst-接收转换后的数据" class="headerlink" title="dst 接收转换后的数据"></a>dst 接收转换后的数据</h3><p>​    struct sockaddr addr</p>
-<p>​    struct sockaddr_in6 addr6</p>
-<p>​    struct sockaddr_in addr4</p>
-<h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><p>负值：如果函数出错，则返回一个负值，并将EAFNOSUPPORT赋值给erron</p>
-<p>0：af执行的地址簇和src格式不对</p>
-<p>1：成功</p>
-<h2 id="需要包含的头文件"><a href="#需要包含的头文件" class="headerlink" title="需要包含的头文件"></a>需要包含的头文件</h2><p>#include &lt;arpa/inet.h&gt;</p>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">invalid_ipaddr</span> <span class="params">(<span class="keyword">char</span> *str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (str == <span class="literal">NULL</span> || *str == <span class="string">'\0'</span>)&#123;</span><br><span class="line">    	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">union</span>&#123;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr</span> <span class="title">addr</span>;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in6</span> <span class="title">addr6</span>;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">addr4</span>;</span></span><br><span class="line">    &#125;a;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">memset</span> (&amp;a,<span class="number">0</span>,<span class="keyword">sizeof</span>(a));</span><br><span class="line">    <span class="keyword">if</span> (<span class="number">1</span> == inet_pton (AF_INET,str,&amp;a.addr4.sin_addr))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (<span class="number">1</span> == inet_pton (AF_INET6,str,&amp;a.addr6.sin6_addr))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="mongodb-索引介绍说明"><a href="#mongodb-索引介绍说明" class="headerlink" title="mongodb 索引介绍说明"></a>mongodb 索引介绍说明</h1><h2 id="复合索引："><a href="#复合索引：" class="headerlink" title="复合索引："></a>复合索引：</h2><h3 id="命令："><a href="#命令：" class="headerlink" title="命令："></a>命令：</h3><p>db.test.ensureIndex({“username”:1, “age”:-1})</p>
+<h3 id="含义："><a href="#含义：" class="headerlink" title="含义："></a>含义：</h3><p>该索引被创建后:<br>    1、基于username和age的查询将会用到该索引<br>    2、基于username的查询会用到该索引<br>    3、基于age的查询将不会用到该复合索引。因此可以说，如果想用到复合索引，必须在查询条件中包含复合索引中的前N个索引列<br>    4、查询条件中的键值顺序和复合索引中的创建顺序不一致的话，MongoDB可以智能的帮助我们调整该顺序，以便使复合索引可以为查询所用。如：db.test.find({“age”: 30, “username”: “stephen”})对于该示例中的查询条件，MongoDB在检索之前将会动态的调整查询条件文档的顺序，以使该查询可以用到刚刚创建的复合索引</p>
+<h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><p>db.test.ensureIndex({“userid”:1},{“unique”:true})</p>
+<h3 id="含义：-1"><a href="#含义：-1" class="headerlink" title="含义："></a>含义：</h3><p>如果再次插入userid重复的文档时，MongoDB将报错，以提示插入重复键，如：<br>        db.test.insert({“userid”:5})<br>    db.test.insert({“userid”:5})<br>    E11000 duplicate key error index: test.test.$userid_1  dup key: { : 5.0 }  </p>
+<h3 id="命令-1"><a href="#命令-1" class="headerlink" title="命令"></a>命令</h3><p>db.test.ensureIndex({“userid”:1},{“unique”:true,”dropDups”:true}) </p>
+<h3 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h3><p>创建唯一索引，并消除重复数据，如果文章中已经有重复项，则执行可以自动删除重复的项    </p>
+<h3 id="命令-2"><a href="#命令-2" class="headerlink" title="命令"></a>命令</h3><p>db.test.ensureIndex({“userid”:1,”age”:1},{“unique”:true})</p>
+<h3 id="含义-1"><a href="#含义-1" class="headerlink" title="含义"></a>含义</h3><p>复合唯一索引也可以创建</p>
 
       
     </div>
@@ -411,7 +406,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/C/" rel="tag"># C</a>
+            <a href="/tags/bigdata/" rel="tag"># bigdata</a>
           
         </div>
       
@@ -424,8 +419,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/06/typora-use-skill/" rel="next" title="typora_use_skill">
-                <i class="fa fa-chevron-left"></i> typora_use_skill
+              <a href="/2019/04/21/java-script学习/" rel="next" title="java script学习">
+                <i class="fa fa-chevron-left"></i> java script学习
               </a>
             
           </div>
@@ -433,10 +428,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/07/自动精简配置/" rel="prev" title="自动精简配置">
-                自动精简配置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -578,7 +569,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C语言库函数—使用inet-pton判断ip的合法性"><span class="nav-number">1.</span> <span class="nav-text">C语言库函数—使用inet_pton判断ip的合法性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数原型："><span class="nav-number">1.1.</span> <span class="nav-text">函数原型：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数解析："><span class="nav-number">1.2.</span> <span class="nav-text">参数解析：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#af-地址簇"><span class="nav-number">1.2.1.</span> <span class="nav-text">af 地址簇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#src-地址来源"><span class="nav-number">1.2.2.</span> <span class="nav-text">src 地址来源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dst-接收转换后的数据"><span class="nav-number">1.2.3.</span> <span class="nav-text">dst 接收转换后的数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#返回值"><span class="nav-number">1.3.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需要包含的头文件"><span class="nav-number">1.4.</span> <span class="nav-text">需要包含的头文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">1.5.</span> <span class="nav-text">例子</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mongodb-索引介绍说明"><span class="nav-number">1.</span> <span class="nav-text">mongodb 索引介绍说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#复合索引："><span class="nav-number">1.1.</span> <span class="nav-text">复合索引：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令："><span class="nav-number">1.1.1.</span> <span class="nav-text">命令：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#含义："><span class="nav-number">1.1.2.</span> <span class="nav-text">含义：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#唯一索引"><span class="nav-number">1.2.</span> <span class="nav-text">唯一索引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令"><span class="nav-number">1.2.1.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#含义：-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">含义：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#含义"><span class="nav-number">1.2.4.</span> <span class="nav-text">含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令-2"><span class="nav-number">1.2.5.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#含义-1"><span class="nav-number">1.2.6.</span> <span class="nav-text">含义</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -751,9 +742,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2019/04/06/inet-pton/';
-          this.page.identifier = '2019/04/06/inet-pton/';
-          this.page.title = 'inet_pton';
+          this.page.url = 'http://yoursite.com/2019/04/23/mongodb-索引说明/';
+          this.page.identifier = '2019/04/23/mongodb-索引说明/';
+          this.page.title = 'mongodb_索引说明';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://jackdan.disqus.com/embed.js';
