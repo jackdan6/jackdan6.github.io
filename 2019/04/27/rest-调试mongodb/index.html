@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="bigdata,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="python脚本通过rest协议，调试mongodb123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919">
+<meta name="keywords" content="bigdata">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rest 调试mongodb">
+<meta property="og:url" content="http://yoursite.com/2019/04/27/rest-调试mongodb/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="python脚本通过rest协议，调试mongodb123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-27T11:28:49.429Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="rest 调试mongodb">
+<meta name="twitter:description" content="python脚本通过rest协议，调试mongodb123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/27/rest-调试mongodb/">
+
+
+
+
+
+  <title>rest 调试mongodb | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/27/rest-调试mongodb/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">rest 调试mongodb</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-27T19:04:34+08:00">
+                2019-04-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mongodb/" itemprop="url" rel="index">
+                    <span itemprop="name">mongodb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/27/rest-调试mongodb/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/27/rest-调试mongodb/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="python脚本通过rest协议，调试mongodb"><a href="#python脚本通过rest协议，调试mongodb" class="headerlink" title="python脚本通过rest协议，调试mongodb"></a>python脚本通过rest协议，调试mongodb</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">Created on Mon Apr  1 14:01:08 2019</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">@author: liuyu17</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> codecs</span><br><span class="line"><span class="keyword">import</span> urllib </span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">aaa =<span class="string">'SElLREZSNDJUWAAAAAAAAANEAdfMJtj0wd7I7BLXycsZJZT8EAc5G0S9WOQSFb4k2Swk5/3mFgbiOBXzNP4VyMTkBtPv/esMEREkD+kOnfMZ5c8S+8yuHhD8CfAy4Pjb0UgIAgVIDJLmMTAh9Wyy197qIBHhCS/0/UEePyASz98fLwfpC+9My/hPKNfGA0gW6Etc8rfgEhUmL/jv/ssWAesP4I7dHxHjYG4Q+u/JCukwH8fURgYkCAdB4PUpBh4WEaRFCboH40Ij8DfLB9q8NuDA/gYG4DQRM+vX+9eWLyYe/K5W9Dj6T/ratP/sIs3uGNArw5zSA8TsB4YxHwJUtGIWBE/98Nb9J2Mi6SMyBvEP6RD4ChImScUccBUOFuXt5LgdBxsiGlQJQhv1zxT2C+UPTu3xNEIMLBUJKjPp2SEu/DoW+UZBK9/YAkHiDxsXDf7tkSDj3dXjs98BHCIzDanA/eHyDdOp+ywkm93u6gsg/vblF+0bbLMO8hr2/AxjBizwExaASNPd1+H/5ir7/OXcFuSMI8PwHcnxMOEXNvtSDunhI0MP6bDXExPiMuHS8OLj/SokE/7+pfjL+fbXHvTrDEW228rq9FYezRGwIdnNGeX/9CLC3PsgNPnqnkrWy0//F8KYM+RbELjUEhokSMIHV/flNPHsJuovOD8U3SPXFRHwv+n+l4AG8Qm0+7IkOAArJAwA'</span></span><br><span class="line"></span><br><span class="line">#url = r'http://10.14.101.215:8004/face-web/ws/rest/FaceLibApply/countFaceLibNum'</span><br><span class="line">#body = &#123;"facelibIds": "-1"&#125;</span><br><span class="line">#</span><br><span class="line">#response = requests.get(url, data = json.dumps(body))</span><br><span class="line">#print(response.text)</span><br><span class="line"></span><br><span class="line">#url = r'http://10.14.101.215:8004/face-web/ws/rest/FaceLibApply/addFaceRecord'</span><br><span class="line">#utf = codecs.decode('48494b44465234305800000000000000fe301ced13514254e423f0e13e02dd0f0e2fc4f02f0d5f223df2d4123ff2f2211ed2b5e1e33efef2ffefbdd1d32fb14002203125e1132f101443e12fc2e21342f1ee4720421f1c1f2dcf21430ddffd2e2b205f21212e011d110e0e0141310ff01d361ff1cfe0cf20b121e130d10000a24e3ff00ee00f0f312230f0e13bf13300231ef00e1ee4c34dec14fc011d1d300ee3f4f1dd011110f3ef104ed2411b23f25fe220c21ef04f0f01d2f2e32b0150d10d3fe322ff23e22e012fdde1ede004f22203ccf2eee0dcf03f1f10c201ff0ce1dc210eff2c01be1fbfde4ab92303fc310e10c4ed2332c00ef0010f23d0afd1f4f200311004e1f0dd0e12de01dd1413c1def04ff1214dfbaf003fe101df2fc1f0021e1f2020e203fd110edc212df4d0fefe120ced4edf3104203c341bfef0c40ef540c3f4111f122e10e5113d32105121ec1fd4fe3001200c1f502d1d0c33c4dad1e3c2422d32dee02421cf40f2e2d2420213e0efdff1d0a05ff100c2f013e0120efe2f0f13f202441bf1fdcf6300f001101112e1af0232ef0103f000f4e00f12fedd2fd2ce1e321f0fbfd10f6d5000ee014f1f10e04f12fd000d130fce0d1f0012b33300e1f0a21ec15fde3fd51ddcf2bedd23eb1feed4ceed032e10f13fcf0d4ff05e1312041e1119d0d210d3f1e0ce0f05df022f02b03efffef1ed6b2e2f10b2f30233f3112e420fe115f100edf0f03800f6330b00'.encode('utf-8'),'hex')</span><br><span class="line">#print(utf)</span><br><span class="line">#base64code = base64.b64encode(utf)</span><br><span class="line">#print(len(base64code))</span><br><span class="line">#urlcode = urllib.parse.quote(base64code)</span><br><span class="line">#body = &#123;"facelibId": "1",</span><br><span class="line">#        "humanId": "1547446626D13943",</span><br><span class="line">#        "facePicurl": r"Static/10004/001/t2a8/26c",</span><br><span class="line">#        "model": "%s"%aaa</span><br><span class="line">#        &#125;</span><br><span class="line"></span><br><span class="line">#response = requests.get(url, data = json.dumps(body))</span><br><span class="line">#print(response.text)</span><br><span class="line"></span><br><span class="line">url = r<span class="string">'http://10.14.101.221:8004/face-web/ws/rest/FaceLibApply/getFaceRecords'</span></span><br><span class="line">body = &#123;<span class="string">"facelibIds"</span>: <span class="string">"1"</span>,</span><br><span class="line">        <span class="string">"pageNum"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="string">"pageSize"</span>: <span class="number">10</span>,</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">response = requests.get(url, data = json.dumps(body))</span><br><span class="line">print(response.text)</span><br><span class="line"></span><br><span class="line">#url = r'http://10.14.101.215:8004/face-web/ws/rest/FaceLibApply/updateFaceRecord'</span><br><span class="line">#utf = codecs.decode('48494b444652343058000000000000003d0ffde100f00f11d1c300d360c065eef10e00f044ed1112fd01102f001231b1f3ef002ed0f0f0f112222e2e2f1e2e413f323210e2dd212f0fff00d11efd313e041102f0001f2330f33100ef0e041f0e111d1000feef12e1001020fd202fde10f3003edd25e100f2deee130011fd1f1f102d322f00dd1e0c10fd1f113f131f2f0efdfef3123d0e0e0df0f02f00202ee21ff4ef2dee141e3f0111f100d1f3e32d010f002e0120df320011120c00f12b0ed01e02011f4d001ff001de3ffd00040edf221f0eff012210010d13d53050f052ffdecd130deb41f4ff0ffefdf2033342102e1d0e10d120efffff2ff0e0f13ee2dcf1e1301f2c2e0003250212f1d1f01de2102311ed0fd2111e0e002120f0f00f220012130f011001d13101301903f2ef1ed43e250110321d02e1e010fe2221e1b10f213f3fe01dd1c1f020d0d020ff01d11e00de21ee11df3312fed50eef2022ff00d10f21efc0d0ef0eef2040e4f021101010e1200f11e11c52ff103d1d12d20d23ed03cfe01f150d21c02e20ef25c2221ef221ed133cc10d002e1f101f20f3f0e10533f2dffe03fd011d0d2e2f11c4f103403f1301f1f20ef0f1f3f1ee1120c1effff0d011f21e010f4f311e01240ded02112ff1121e2230f020f2edec0e02100d062ee1af0bf01c0ecf1d230031e222010dda110ef3fdff0f3fe0f3e1fe2100ff0e222fcf000300e10e1ef1d1eff03800ced10800'.encode('utf-8'),'hex')</span><br><span class="line">#base64code = base64.b64encode(utf)</span><br><span class="line">#urlcode = urllib.parse.quote(base64code)</span><br><span class="line">#body = &#123;"rowKey": "5d618ed9575e2278f31f0392",</span><br><span class="line">#        "facelibId": "1",</span><br><span class="line">#        "facePicurl": r"Static/10004/001/t2a8/293",</span><br><span class="line">#        "model": "%s"%aaa</span><br><span class="line">#        &#125;</span><br><span class="line"></span><br><span class="line">#response = requests.get(url, data = json.dumps(body))</span><br><span class="line">#print(response.text)</span><br><span class="line"></span><br><span class="line">#url = r'http://10.14.101.215:8004/face-web/ws/rest/FaceLibApply/getFaceModelRecords'</span><br><span class="line">#body = &#123;"facelibIds": "1",</span><br><span class="line">#        "pageNum": 1,</span><br><span class="line">#        "pageSize": 10,</span><br><span class="line">#        &#125;</span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">#response = requests.get(url, data = json.dumps(body))</span><br><span class="line">#print(response.text)</span><br><span class="line"></span><br><span class="line">#url = r'http://10.14.101.215:8004/face-web/ws/rest/FaceLibApply/submitHumanFaceCompareSyncJob'</span><br><span class="line">#utf = codecs.decode('48494b444652343058000000000000003d0ffde100f00f11d1c300d360c065eef10e00f044ed1112fd01102f001231b1f3ef002ed0f0f0f112222e2e2f1e2e413f323210e2dd212f0fff00d11efd313e041102f0001f2330f33100ef0e041f0e111d1000feef12e1001020fd202fde10f3003edd25e100f2deee130011fd1f1f102d322f00dd1e0c10fd1f113f131f2f0efdfef3123d0e0e0df0f02f00202ee21ff4ef2dee141e3f0111f100d1f3e32d010f002e0120df320011120c00f12b0ed01e02011f4d001ff001de3ffd00040edf221f0eff012210010d13d53050f052ffdecd130deb41f4ff0ffefdf2033342102e1d0e10d120efffff2ff0e0f13ee2dcf1e1301f2c2e0003250212f1d1f01de2102311ed0fd2111e0e002120f0f00f220012130f011001d13101301903f2ef1ed43e250110321d02e1e010fe2221e1b10f213f3fe01dd1c1f020d0d020ff01d11e00de21ee11df3312fed50eef2022ff00d10f21efc0d0ef0eef2040e4f021101010e1200f11e11c52ff103d1d12d20d23ed03cfe01f150d21c02e20ef25c2221ef221ed133cc10d002e1f101f20f3f0e10533f2dffe03fd011d0d2e2f11c4f103403f1301f1f20ef0f1f3f1ee1120c1effff0d011f21e010f4f311e01240ded02112ff1121e2230f020f2edec0e02100d062ee1af0bf01c0ecf1d230031e222010dda110ef3fdff0f3fe0f3e1fe2100ff0e222fcf000300e10e1ef1d1eff03800ced10800'.encode('utf-8'),'hex')</span><br><span class="line">#print(utf)</span><br><span class="line">#base64code = base64.b64encode(utf)</span><br><span class="line">#base64uncode = base64.b64decode(aaa)</span><br><span class="line">#print(base64uncode)</span><br><span class="line">#urlcode = urllib.parse.quote(base64code)</span><br><span class="line">#body = &#123;"facelibIds": "1",</span><br><span class="line">#        "pageNum": 1,</span><br><span class="line">#        "pageSize": 10,</span><br><span class="line">#        "faceModel": "%s"%aaa</span><br><span class="line">#        &#125;</span><br><span class="line">#</span><br><span class="line">#response = requests.get(url, data = json.dumps(body))</span><br><span class="line">#print(response.text)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#url = r'http://10.14.101.215:8004/face-web/ws/rest/FaceLibApply/delFaceRecord'</span><br><span class="line">#body = &#123;"rowKey": "5d618ed9575e2278f31f0392",</span><br><span class="line">#        &#125;</span><br><span class="line">#</span><br><span class="line">#response = requests.get(url, data = json.dumps(body))</span><br><span class="line">#print(response.text)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#url = r'http://10.14.101.215:8004/face-web/ws/rest/AlarmInfoApply/getAlarmInfoStatistics'</span><br><span class="line">#body = &#123;</span><br><span class="line">#        "alarmType": 0,</span><br><span class="line">#        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#print(json.dumps(body))</span><br><span class="line">#response = requests.post(url, data = json.dumps(body))</span><br><span class="line">#response = requests.get(url, data = json.dumps(body))</span><br><span class="line">#print(response.text)</span><br><span class="line">#utf = codecs.decode('48494b444652343058000000000000003d0ffde100f00f11d1c300d360c065eef10e00f044ed1112fd01102f001231b1f3ef002ed0f0f0f112222e2e2f1e2e413f323210e2dd212f0fff00d11efd313e041102f0001f2330f33100ef0e041f0e111d1000feef12e1001020fd202fde10f3003edd25e100f2deee130011fd1f1f102d322f00dd1e0c10fd1f113f131f2f0efdfef3123d0e0e0df0f02f00202ee21ff4ef2dee141e3f0111f100d1f3e32d010f002e0120df320011120c00f12b0ed01e02011f4d001ff001de3ffd00040edf221f0eff012210010d13d53050f052ffdecd130deb41f4ff0ffefdf2033342102e1d0e10d120efffff2ff0e0f13ee2dcf1e1301f2c2e0003250212f1d1f01de2102311ed0fd2111e0e002120f0f00f220012130f011001d13101301903f2ef1ed43e250110321d02e1e010fe2221e1b10f213f3fe01dd1c1f020d0d020ff01d11e00de21ee11df3312fed50eef2022ff00d10f21efc0d0ef0eef2040e4f021101010e1200f11e11c52ff103d1d12d20d23ed03cfe01f150d21c02e20ef25c2221ef221ed133cc10d002e1f101f20f3f0e10533f2dffe03fd011d0d2e2f11c4f103403f1301f1f20ef0f1f3f1ee1120c1effff0d011f21e010f4f311e01240ded02112ff1121e2230f020f2edec0e02100d062ee1af0bf01c0ecf1d230031e222010dda110ef3fdff0f3fe0f3e1fe2100ff0e222fcf000300e10e1ef1d1eff03800ced10800'.encode('utf-8'),'hex')</span><br><span class="line">#print(utf,len(utf))</span><br><span class="line">#print('----------------')</span><br><span class="line">#a = base64.b64encode(utf)</span><br><span class="line">#print(a,len(a))</span><br><span class="line">#print('----------------')</span><br><span class="line">#print(urllib.parse.quote(a), len(urllib.parse.quote(a)))</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/bigdata/" rel="tag"># bigdata</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/27/使用python批量入库-kafka/" rel="next" title="使用python批量入库 kafka">
+                <i class="fa fa-chevron-left"></i> 使用python批量入库 kafka
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/30/51劳动节游玩计划/" rel="prev" title="51劳动节游玩计划">
+                51劳动节游玩计划 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#python脚本通过rest协议，调试mongodb"><span class="nav-number">1.</span> <span class="nav-text">python脚本通过rest协议，调试mongodb</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://jackdan.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2019/04/27/rest-调试mongodb/';
+          this.page.identifier = '2019/04/27/rest-调试mongodb/';
+          this.page.title = 'rest 调试mongodb';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://jackdan.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
