@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="mongo.db 架构首先要清楚的几个概念1、什么是关系型数据库和非关系型数据库">
+<meta name="description" content="mongodb 架构mongdb中主、副、仲裁节点相关概念mongodb 的集群方式主要分为三种Replica Set​    中文翻译叫做副本集。其实简单来说就是集群当中包含了多份数据，保证主节点挂掉了，备节点能继续提供数据服务，提供的前提就是数据需要和主节点一致。​    Mongodb(M)表示主节点，Mongodb(S)表示备节点，Mongodb(A)表示仲裁节点。主备节点存储数据(M,S">
 <meta name="keywords" content="bigdata">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mongodb 架构">
 <meta property="og:url" content="http://yoursite.com/2019/04/18/mongodb架构/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="mongo.db 架构首先要清楚的几个概念1、什么是关系型数据库和非关系型数据库">
+<meta property="og:description" content="mongodb 架构mongdb中主、副、仲裁节点相关概念mongodb 的集群方式主要分为三种Replica Set​    中文翻译叫做副本集。其实简单来说就是集群当中包含了多份数据，保证主节点挂掉了，备节点能继续提供数据服务，提供的前提就是数据需要和主节点一致。​    Mongodb(M)表示主节点，Mongodb(S)表示备节点，Mongodb(A)表示仲裁节点。主备节点存储数据(M,S">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-08T10:31:39.455Z">
+<meta property="og:updated_time" content="2019-05-11T03:27:45.875Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mongodb 架构">
-<meta name="twitter:description" content="mongo.db 架构首先要清楚的几个概念1、什么是关系型数据库和非关系型数据库">
+<meta name="twitter:description" content="mongodb 架构mongdb中主、副、仲裁节点相关概念mongodb 的集群方式主要分为三种Replica Set​    中文翻译叫做副本集。其实简单来说就是集群当中包含了多份数据，保证主节点挂掉了，备节点能继续提供数据服务，提供的前提就是数据需要和主节点一致。​    Mongodb(M)表示主节点，Mongodb(S)表示备节点，Mongodb(A)表示仲裁节点。主备节点存储数据(M,S">
 
 
 
@@ -381,7 +381,89 @@
       
 
       
-        <h1 id="mongo-db-架构"><a href="#mongo-db-架构" class="headerlink" title="mongo.db 架构"></a>mongo.db 架构</h1><h2 id="首先要清楚的几个概念"><a href="#首先要清楚的几个概念" class="headerlink" title="首先要清楚的几个概念"></a>首先要清楚的几个概念</h2><h3 id="1、什么是关系型数据库和非关系型数据库"><a href="#1、什么是关系型数据库和非关系型数据库" class="headerlink" title="1、什么是关系型数据库和非关系型数据库"></a>1、什么是关系型数据库和非关系型数据库</h3>
+        <h1 id="mongodb-架构"><a href="#mongodb-架构" class="headerlink" title="mongodb 架构"></a>mongodb 架构</h1><h2 id="mongdb中主、副、仲裁节点相关概念"><a href="#mongdb中主、副、仲裁节点相关概念" class="headerlink" title="mongdb中主、副、仲裁节点相关概念"></a>mongdb中主、副、仲裁节点相关概念</h2><h3 id="mongodb-的集群方式主要分为三种"><a href="#mongodb-的集群方式主要分为三种" class="headerlink" title="mongodb 的集群方式主要分为三种"></a>mongodb 的集群方式主要分为三种</h3><h4 id="Replica-Set"><a href="#Replica-Set" class="headerlink" title="Replica Set"></a>Replica Set</h4><p>​    中文翻译叫做副本集。其实简单来说就是集群当中包含了多份数据，保证主节点挂掉了，备节点能继续提供数据服务，提供的前提就是数据需要和主节点一致。<br>​    Mongodb(M)表示主节点，Mongodb(S)表示备节点，Mongodb(A)表示仲裁节点。主备节点存储数据(M,S)，仲裁节点不存储数据。客户端同时连接主节点与备节点，不连接仲裁节点。<br>​    默认设置下，主节点提供所有增删查改服务，备节点不提供任何服务。但是可以通过设置使备节点提供查询服务，这样就可以减少主节点的压力，当客户端进行数据查询时，请求自动转到备节点上。这个设置叫做<a href="http://docs.mongodb.org/manual/applications/replication/#read-preference-modes" target="_blank" rel="noopener">Read Preference Modes</a>，同时Java客户端提供了简单的配置方式，可以不必直接对数据库进行操作。<br>​    仲裁节点是一种特殊的节点，它本身并不存储数据，主要的作用是决定哪一个备节点在主节点挂掉之后提升为主节点，所以客户端不需要连接此节点。这里虽然只有一个备节点，但是仍然需要一个仲裁节点来提升备节点级别。</p>
+<h5 id="主节点（Primary）"><a href="#主节点（Primary）" class="headerlink" title="主节点（Primary）"></a>主节点（Primary）</h5><p>在复制集中，主节点是唯一能够接收写请求的节点。MongoDB在主节点进行写操作，并将这些操作记录到主节点的oplog中。而从节点将会从oplog复制到其本机，并将这些操作应用到自己的数据集上。（复制集最多只能拥有一个主节点）</p>
+<h5 id="从节点（Secondaries）"><a href="#从节点（Secondaries）" class="headerlink" title="从节点（Secondaries）"></a>从节点（Secondaries）</h5><p>从节点通过应用主节点传来的数据变动操作来保持其数据集与主节点一致。从节点也可以通过增加额外参数配置来对应特殊需求。例如，从节点可以是non-voting或是priority 0.</p>
+<h5 id="仲裁节点（ARBITER）"><a href="#仲裁节点（ARBITER）" class="headerlink" title="仲裁节点（ARBITER）"></a>仲裁节点（ARBITER）</h5><p>仲裁节点即投票节点，其本身并不包含数据集，且也无法晋升为主节点。但是，旦当前的主节点不可用时，投票节点就会参与到新的主节点选举的投票中。仲裁节点使用最小的资源并且不要求硬件设备。投票节点的存在使得复制集可以以偶数个节点存在，而无需为复制集再新增节点 不要将投票节点运行在复制集的主节点或从节点机器上。 投票节点与其他 复制集节点的交流仅有：选举过程中的投票，心跳检测和配置数据。这些交互都是不加密的。</p>
+<h4 id="Sharding"><a href="#Sharding" class="headerlink" title="Sharding"></a>Sharding</h4><h4 id="Master-Slaver"><a href="#Master-Slaver" class="headerlink" title="Master-Slaver"></a>Master-Slaver</h4><h2 id="NoSQL介绍"><a href="#NoSQL介绍" class="headerlink" title="NoSQL介绍"></a>NoSQL介绍</h2><p><strong>一、NoSQL简介</strong></p>
+<p>NoSQL,全称是”Not Only Sql”,指的是非关系型的数据库。<br>非关系型数据库主要有这些特点:<strong>非关系型的、分布式的、开源的、水平可扩展的</strong>。<br>原始的目的是为了大规模 web 应用,这场全新的数据库革命运动早期就有人提出,发展至 2009 年趋势越发高涨。<br>NoSQL 的拥护者们提倡运用非关系型的数据存储,通常的应用如:模式自由、支持简易复制、简单的 API、最终 的一致性(非 ACID)、大容量数据等。<br>NoSQL 被我们用得最多的当数 <strong>key-value 存储（如Redis）</strong>,当然还 有其他的<strong>文档型的、列存储、图型数据库、xml 数据库</strong>等。 </p>
+<p><strong>二、引入一个问题为什么会有NoSQL</strong></p>
+<p>通用关系数据库功能强大，遵循SQL标准，而且性能卓越而且稳定为什么会出现NoSQL呢？<br>上面也说过了NoSQL的初识是随着WEB应用的飞速发展中出现的，在期间遇到了一些关系型数据库难以克服的问题，例如：<br>1、Highperformance- 对数据库高并发读写的需求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">web2.0 网站要根据用户个性化信息来实时生成动态页面和提供动态信息,所以基本上无法 使用动态页面静态化技术,因此数据库并发负载非常高,往往要达到每秒上万次读写请求。 </span><br><span class="line">关系型数据库应付上万次 SQL 查询还勉强顶得住,但是应付上万次 SQL 写数据请求,硬盘 IO 就已经无法承受了,其实对于普通的 BBS 网站,往往也存在对高并发写请求的需求。</span><br></pre></td></tr></table></figure>
+<p> 2、HugeStorage- 对海量数据的高效率存储和访问的需求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">对于大型的 SNS 网站,每天用户产生海量的用户动态信息,以国外的 Friend feed 为例,一 个月就达到了 2.5 亿条用户动态,</span><br><span class="line">对于关系数据库来说,在一张 2.5 亿条记录的表里面进行 SQL 查询,效率是极其低下乃至不可忍受的。</span><br><span class="line">再例如大型 web 网站的用户登录系统,例如腾 讯,盛大,动辄数以亿计的帐号,关系数据库也很难应付。</span><br></pre></td></tr></table></figure>
+<p>3、HighScalability&amp;&amp;HighAvailability- 对数据库的高可扩展性和高可用性的需求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">随着数据库的不断增加，你的数据库没有办法向webserver或app那样简单的通过增加硬件来提升性能和负载能力。</span><br><span class="line">并且mysql没有提供水平拆分的和扩容的方案，这是非常头疼的一件事情。</span><br></pre></td></tr></table></figure>
+<p>对于上面的三高要求来说很多关系型数据库就遇到了难以克服的问题，<strong>并且在WEB2.0的网站和应用来说关系型数据库很多主要特性却无用武之地</strong>！！！</p>
+<p>1、数据库事务一致性需求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">很多 web 实时系统并不要求严格的数据库事务,对读一致性的要求很低,有些场合对写一 致性要求也不高。因此数据库事务管理成了数据库高负载下一个沉重的负担。</span><br></pre></td></tr></table></figure>
+<p>2、数据库的写实时性和读实时性需求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对关系数据库来说,插入一条数据之后立刻查询,是肯定可以读出来这条数据的,但是对于 很多 web 应用来说,并不要求这么高的实时性。</span><br></pre></td></tr></table></figure>
+<p>3、对复杂的 SQL 查询,特是多表关联查询的需求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">任何大数据量的 web 系统,都非常忌讳多个大表的关联查询,以及复杂的数据分析类型的复杂 SQL查询,特是SNS类型的网站,从需求以及产品设计角度,就避免了这种情况的产生。</span><br><span class="line">往往更多的只是单表的主键查询,以及单表的简单条件分页查询,SQL 的功能被 极大的弱化了。</span><br><span class="line">因此,关系数据库在这些越来越多的应用场景下显得不那么合适了</span><br></pre></td></tr></table></figure>
+<p><strong>为了解决如上问题NoSQL就诞生了~</strong></p>
+<p><strong>三、NoSQL特点</strong></p>
+<p>1、它可以处理超大量的数据<br>2、它运行在便宜的服务器集群上集群扩充起来非常方便并且成本很低。<br>3、它击碎了性能瓶颈<br>NoSQL 的支持者称,通过 NoSQL 架构可以省去将 Web 或 Java 应用和数据转换成 SQL 格式的 时间,执行速度变得更快。<br>“SQL 并非适用于所有的程序代码”,对于那些繁重的重复操作的数据,SQL 值得花钱。但 是当数据库结构非常简单时,SQL 可能没有太大用处。<br>4、它没有过多的操作<br>虽然NoSQL的支持者也承认关系型数据库提供了无可比拟的功能集合,而且在数据完整性上也发挥绝对稳定,他们同时也表示,企业的具体需求可能没有那么复杂。<br>5、 它的支持者源于社区<br>因为NoSQL项目都是开源的,因此它们缺乏供应商提供的正式支持。这一点它们与大多数 开源项目一样,不得不从社区中寻求支持。<br>NoSQL 发展至今,出现了好几种非关系性数据库,比如我正在学习的MongoDB</p>
+<h2 id="初识MongoDB"><a href="#初识MongoDB" class="headerlink" title="初识MongoDB"></a>初识MongoDB</h2><p>MongoDB 是一个介于关系数据库和非关系数据库之间的产品,是非关系数据库当中功能最丰富,最像关系数据库的。<br>他支持的数据结构非常松散,是类似 json 的 bjson 格式,因此可以存储比较复杂的数据类型。<br>MongoDB最大的特点：它支持的查询语言非常强大,<strong>其语法有点类似于面向对象的查询语言</strong>,<strong>几乎可以实现类似关系数据库单表查询的绝大部分功能</strong>, 而且还支持对数据建立索引。它是一个面向集合的,模式自由的文档型数据库。</p>
+<h3 id="1、-面向集合-Collenction-Orented"><a href="#1、-面向集合-Collenction-Orented" class="headerlink" title="1、 面向集合(Collenction-Orented)"></a>1、 面向集合(Collenction-Orented)</h3><p>意思是数据被分组存储在数据集中, 被称为一个集合(Collenction)。每个集合在数据库中 都有一个唯一的标识名,并且可以包 无限数目的文档。集合的概念类似关系型数据库(RDBMS)里的表(table),不同的是它不需要定义任何模式(schema)。</p>
+<h3 id="2、-模式自由-schema-free"><a href="#2、-模式自由-schema-free" class="headerlink" title="2、 模式自由(schema-free)"></a>2、 模式自由(schema-free)</h3><p>意味着对于存储在 MongoDB 数据库中的文件,我们不需要知道它的任何结构定义。提了这 么多次”无模式”或”模式自由”,它到是个什么概念呢?例如,下面两个记录可以存在于同一个集合里面:<br>{“welcome” : “Beijing”}<br>{“age” : 28}</p>
+<h3 id="3、-文档型-意思是我们存储的数据是键-值对的集合-键是字符串-值可以是数据类型集合里的任意类型"><a href="#3、-文档型-意思是我们存储的数据是键-值对的集合-键是字符串-值可以是数据类型集合里的任意类型" class="headerlink" title="3、 文档型 意思是我们存储的数据是键-值对的集合,键是字符串,值可以是数据类型集合里的任意类型"></a>3、 文档型 意思是我们存储的数据是键-值对的集合,键是字符串,值可以是数据类型集合里的任意类型</h3><p> 包括数组和文档. 我们把这个数据格式称作 “BSON” 即 “Binary Serialized dOcument Notation.”</p>
+<h3 id="二、MongoDB特点"><a href="#二、MongoDB特点" class="headerlink" title="二、MongoDB特点"></a>二、MongoDB特点</h3><ol>
+<li>面向集合存储,易于存储对象类型的数据</li>
+<li>模式自由</li>
+<li>支持动态查询</li>
+<li>支持完全索引,包 内部对象</li>
+<li>支持查询</li>
+<li>支持复制和故障恢复</li>
+<li>使用高效的二进制数据存储,包括大型对象(如视频等)</li>
+<li>自动处理碎片,以支持云计算层次的扩展性</li>
+<li>支持 Python,PHP,Ruby,Java,C,C#,Javascript,Perl更多请看社区</li>
+<li>文件存储格式为 BSON(一种 JSON 的扩展)</li>
+<li>可通过网络访问</li>
+</ol>
+<h3 id="三、MongoDB功能"><a href="#三、MongoDB功能" class="headerlink" title="三、MongoDB功能"></a>三、MongoDB功能</h3><ol>
+<li>面向集合的存储:适合存储对象及 JSON 形式的数据</li>
+<li>动态查询:MongoDB 支持丰富的查询表达式。查询指令使用 JSON 形式的标记,可轻易查询文档中内嵌的对象及数组</li>
+<li>完整的索引支持:包括文档内嵌对象及数组。MongoDB 的查询优化器会分析查询表达式,并生成一个高效的查询计划</li>
+<li>查询监视:MongoDB 包 一系列监视工具用于分析数据库操作的性能</li>
+<li>复制及自动故障转移:MongoDB 数据库支持服务器之间的数据复制,支持主-从模式及</li>
+<li>服务器之间的相互复制。复制的主要目标是提供冗余及自动故障转移</li>
+<li>高效的传统存储方式:支持二进制数据及大型对象(如照片或图片)</li>
+<li>自动分片以支持云级 的伸缩性:自动分片功能支持水平的数据库集群,可动态添加额外的机器</li>
+</ol>
+<h3 id="四、适用场景"><a href="#四、适用场景" class="headerlink" title="四、适用场景"></a>四、适用场景</h3><ol>
+<li>网站数据:MongoDB 非常适合实时的插入,更新与查询,并具备网站实时数据存储所需的复制及高度伸缩性</li>
+<li>缓存:由于性能很高,MongoDB 也适合作为信息基础设施的缓存层。在系统重启之后, 由 MongoDB 搭建的持久化缓存层可以避免下层的数据源过载</li>
+<li>大尺寸,低价值的数据:使用传统的关系型数据库存储一些数据时可能会比较昂贵,在此之前,很多时候程序员往往会选择传统的文件进行存储</li>
+<li>高伸缩性的场景:MongoDB 非常适合由数十或数百台服务器组成的数据库。MongoDB的路线图中已经包 对 MapReduce 引擎的内置支持</li>
+<li>用于对象及 JSON 数据的存储:MongoDB 的 BSON 数据格式非常适合文档化格式的存储及查询</li>
+</ol>
+<h3 id="五、逻辑概念："><a href="#五、逻辑概念：" class="headerlink" title="五、逻辑概念："></a>五、逻辑概念：</h3><p>文档：文档(Document)是MongodDB中的核心概念，他是MongoDB逻辑存储的最小基本单元</p>
+<p>集合：多个文档组成的集合</p>
+<p>数据库：多个集合组成的数据库</p>
+<table>
+<thead>
+<tr>
+<th>MongoDb</th>
+<th>关系型数据库Mysql</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文档(document)</td>
+<td>行(row)</td>
+</tr>
+<tr>
+<td>集合(collections)</td>
+<td>表(table)</td>
+</tr>
+<tr>
+<td>数据库(databases)</td>
+<td>数据库(databases)</td>
+</tr>
+</tbody>
+</table>
+
       
     </div>
     
@@ -565,7 +647,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mongo-db-架构"><span class="nav-number">1.</span> <span class="nav-text">mongo.db 架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#首先要清楚的几个概念"><span class="nav-number">1.1.</span> <span class="nav-text">首先要清楚的几个概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、什么是关系型数据库和非关系型数据库"><span class="nav-number">1.1.1.</span> <span class="nav-text">1、什么是关系型数据库和非关系型数据库</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mongodb-架构"><span class="nav-number">1.</span> <span class="nav-text">mongodb 架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mongdb中主、副、仲裁节点相关概念"><span class="nav-number">1.1.</span> <span class="nav-text">mongdb中主、副、仲裁节点相关概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mongodb-的集群方式主要分为三种"><span class="nav-number">1.1.1.</span> <span class="nav-text">mongodb 的集群方式主要分为三种</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Replica-Set"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Replica Set</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#主节点（Primary）"><span class="nav-number">1.1.1.1.1.</span> <span class="nav-text">主节点（Primary）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#从节点（Secondaries）"><span class="nav-number">1.1.1.1.2.</span> <span class="nav-text">从节点（Secondaries）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#仲裁节点（ARBITER）"><span class="nav-number">1.1.1.1.3.</span> <span class="nav-text">仲裁节点（ARBITER）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sharding"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">Sharding</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Master-Slaver"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">Master-Slaver</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NoSQL介绍"><span class="nav-number">1.2.</span> <span class="nav-text">NoSQL介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初识MongoDB"><span class="nav-number">1.3.</span> <span class="nav-text">初识MongoDB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、-面向集合-Collenction-Orented"><span class="nav-number">1.3.1.</span> <span class="nav-text">1、 面向集合(Collenction-Orented)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、-模式自由-schema-free"><span class="nav-number">1.3.2.</span> <span class="nav-text">2、 模式自由(schema-free)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、-文档型-意思是我们存储的数据是键-值对的集合-键是字符串-值可以是数据类型集合里的任意类型"><span class="nav-number">1.3.3.</span> <span class="nav-text">3、 文档型 意思是我们存储的数据是键-值对的集合,键是字符串,值可以是数据类型集合里的任意类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、MongoDB特点"><span class="nav-number">1.3.4.</span> <span class="nav-text">二、MongoDB特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、MongoDB功能"><span class="nav-number">1.3.5.</span> <span class="nav-text">三、MongoDB功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、适用场景"><span class="nav-number">1.3.6.</span> <span class="nav-text">四、适用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、逻辑概念："><span class="nav-number">1.3.7.</span> <span class="nav-text">五、逻辑概念：</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
