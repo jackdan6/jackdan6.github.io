@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="C,">
+  <meta name="keywords" content="ceph,">
 
 
 
@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="C语言库函数—使用inet_pton判断ip的合法性函数原型：int inet_pton(int af,const char src,void dst) 参数解析：af 地址簇​    AF_INET： ​    src为指向字符型的地址(xxx.xxx.xxx.xxx)，函数将该地址转化为in_addr的结构体，并复制在*dst中 ​    AF_INET6： ​    src为指向IPV6的地">
-<meta name="keywords" content="C">
+<meta name="description" content="osd故障检测机制前言心跳是用于OSD节点间检测对方是否故障的，以便及时发现故障节点进入相应的故障处理流程。故障检测需要在故障的发现时间和心跳带来的负载之间做权衡，如果心跳频率太高则过多的心跳报文会影响系统性能，如果心跳频率过低则会延长发现故障节点的时间，从而影响系统的可用性 1、伙伴上报机制需要了解的几个参数osd_heartbeat_interval    向伙伴osd发送ping的时间间隔。">
+<meta name="keywords" content="ceph">
 <meta property="og:type" content="article">
-<meta property="og:title" content="inet_pton">
-<meta property="og:url" content="http://yoursite.com/2019/04/06/inet-pton/index.html">
+<meta property="og:title" content="osd_故障检测机制">
+<meta property="og:url" content="http://yoursite.com/2019/05/26/osd-故障检测机制/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="C语言库函数—使用inet_pton判断ip的合法性函数原型：int inet_pton(int af,const char src,void dst) 参数解析：af 地址簇​    AF_INET： ​    src为指向字符型的地址(xxx.xxx.xxx.xxx)，函数将该地址转化为in_addr的结构体，并复制在*dst中 ​    AF_INET6： ​    src为指向IPV6的地">
+<meta property="og:description" content="osd故障检测机制前言心跳是用于OSD节点间检测对方是否故障的，以便及时发现故障节点进入相应的故障处理流程。故障检测需要在故障的发现时间和心跳带来的负载之间做权衡，如果心跳频率太高则过多的心跳报文会影响系统性能，如果心跳频率过低则会延长发现故障节点的时间，从而影响系统的可用性 1、伙伴上报机制需要了解的几个参数osd_heartbeat_interval    向伙伴osd发送ping的时间间隔。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-07T06:34:45.373Z">
+<meta property="og:updated_time" content="2019-05-26T15:21:37.154Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="inet_pton">
-<meta name="twitter:description" content="C语言库函数—使用inet_pton判断ip的合法性函数原型：int inet_pton(int af,const char src,void dst) 参数解析：af 地址簇​    AF_INET： ​    src为指向字符型的地址(xxx.xxx.xxx.xxx)，函数将该地址转化为in_addr的结构体，并复制在*dst中 ​    AF_INET6： ​    src为指向IPV6的地">
+<meta name="twitter:title" content="osd_故障检测机制">
+<meta name="twitter:description" content="osd故障检测机制前言心跳是用于OSD节点间检测对方是否故障的，以便及时发现故障节点进入相应的故障处理流程。故障检测需要在故障的发现时间和心跳带来的负载之间做权衡，如果心跳频率太高则过多的心跳报文会影响系统性能，如果心跳频率过低则会延长发现故障节点的时间，从而影响系统的可用性 1、伙伴上报机制需要了解的几个参数osd_heartbeat_interval    向伙伴osd发送ping的时间间隔。">
 
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/06/inet-pton/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/26/osd-故障检测机制/">
 
 
 
 
 
-  <title>inet_pton | Hexo</title>
+  <title>osd_故障检测机制 | Hexo</title>
   
 
 
@@ -251,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/06/inet-pton/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/26/osd-故障检测机制/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -268,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">inet_pton</h1>
+          <h1 class="post-title" itemprop="name headline">osd_故障检测机制</h1>
         
 
         <div class="post-meta">
@@ -280,8 +280,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-06T16:32:19+08:00">
-                2019-04-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-26T17:53:03+08:00">
+                2019-05-26
               </time>
             
 
@@ -303,8 +303,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/C库函数/" itemprop="url" rel="index">
-                    <span itemprop="name">C库函数</span>
+                  <a href="/categories/ceph/" itemprop="url" rel="index">
+                    <span itemprop="name">ceph</span>
                   </a>
                 </span>
 
@@ -321,8 +321,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/04/06/inet-pton/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/06/inet-pton/" itemprop="commentCount"></span>
+                <a href="/2019/05/26/osd-故障检测机制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/05/26/osd-故障检测机制/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -381,19 +381,13 @@
       
 
       
-        <h1 id="C语言库函数—使用inet-pton判断ip的合法性"><a href="#C语言库函数—使用inet-pton判断ip的合法性" class="headerlink" title="C语言库函数—使用inet_pton判断ip的合法性"></a>C语言库函数—使用inet_pton判断ip的合法性</h1><h2 id="函数原型："><a href="#函数原型：" class="headerlink" title="函数原型："></a>函数原型：</h2><p>int inet_pton(int af,const char <em>src,void </em>dst)</p>
-<h2 id="参数解析："><a href="#参数解析：" class="headerlink" title="参数解析："></a>参数解析：</h2><h3 id="af-地址簇"><a href="#af-地址簇" class="headerlink" title="af 地址簇"></a>af 地址簇</h3><p>​    AF_INET：</p>
-<p>​    src为指向字符型的地址(xxx.xxx.xxx.xxx)，函数将该地址转化为in_addr的结构体，并复制在*dst中</p>
-<p>​    AF_INET6：</p>
-<p>​    src为指向IPV6的地址，函数将该地址转化为in6_addr结构体，并复制在*dst中</p>
-<h3 id="src-地址来源"><a href="#src-地址来源" class="headerlink" title="src 地址来源"></a>src 地址来源</h3><h3 id="dst-接收转换后的数据"><a href="#dst-接收转换后的数据" class="headerlink" title="dst 接收转换后的数据"></a>dst 接收转换后的数据</h3><p>​    struct sockaddr addr</p>
-<p>​    struct sockaddr_in6 addr6</p>
-<p>​    struct sockaddr_in addr4</p>
-<h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><p>负值：如果函数出错，则返回一个负值，并将EAFNOSUPPORT赋值给erron</p>
-<p>0：af执行的地址簇和src格式不对</p>
-<p>1：成功</p>
-<h2 id="需要包含的头文件"><a href="#需要包含的头文件" class="headerlink" title="需要包含的头文件"></a>需要包含的头文件</h2><p>#include &lt;arpa/inet.h&gt;</p>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">invalid_ipaddr</span> <span class="params">(<span class="keyword">char</span> *str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (str == <span class="literal">NULL</span> || *str == <span class="string">'\0'</span>)&#123;</span><br><span class="line">    	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">union</span>&#123;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr</span> <span class="title">addr</span>;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in6</span> <span class="title">addr6</span>;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">addr4</span>;</span></span><br><span class="line">    &#125;a;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">memset</span> (&amp;a,<span class="number">0</span>,<span class="keyword">sizeof</span>(a));</span><br><span class="line">    <span class="keyword">if</span> (<span class="number">1</span> == inet_pton (AF_INET,str,&amp;a.addr4.sin_addr))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (<span class="number">1</span> == inet_pton (AF_INET6,str,&amp;a.addr6.sin6_addr))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="osd故障检测机制"><a href="#osd故障检测机制" class="headerlink" title="osd故障检测机制"></a>osd故障检测机制</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>心跳是用于OSD节点间检测对方是否故障的，以便及时发现故障节点进入相应的故障处理流程。故障检测需要在故障的发现时间和心跳带来的负载之间做权衡，如果心跳频率太高则过多的心跳报文会影响系统性能，如果心跳频率过低则会延长发现故障节点的时间，从而影响系统的可用性</p>
+<h2 id="1、伙伴上报机制"><a href="#1、伙伴上报机制" class="headerlink" title="1、伙伴上报机制"></a>1、伙伴上报机制</h2><h3 id="需要了解的几个参数"><a href="#需要了解的几个参数" class="headerlink" title="需要了解的几个参数"></a>需要了解的几个参数</h3><p><strong>osd_heartbeat_interval</strong>    向伙伴osd发送ping的时间间隔。实际上会在这个值的基础上加一个随机时间来避免峰值<br><strong>osd_heartbeat_grace</strong>    多久没有收到消息，可以认为对方已经down了<br><strong>mon_osd_reporter_subtree_level</strong>    在哪一个级别上统计错误报告数，默认为host，即计数来自于不同主机的osd报告<br><strong>mon_osd_min_down_reporters</strong>    最少需要多少来自不同的mon_osd_reporter_subtree_level的osd错误报告<br><strong>mon_osd_adjust_heartbeat_grace</strong>    在计算osd失效的时间阈值时，是否要考虑该osd历史上的延时，因此失效时间阈值通常大于osd_heartbeat_grace指定的值<br><strong>osd_heartbeat_min_peers</strong>    在大规模部署的场景中，如果任意两个OSD节点间都建立心跳连接将带来巨大的负担。尤其，当新加入一个OSD节点时这个负担就会几倍地增加。Ceph中每个OSD只和以下两类节点建立心跳连接：一类是同个PG下的OSD节点之间，因为属于同个PG的OSD节点会保存同份数据的副本，如若出现故障则会直接影响数据的可用性。另一类是OSD的左右两个相邻的节点，这两个节点同自己物理上存在比较紧密的联系，例如可能连接在同台交换机。另外，如果建立心跳的Peer数目少于osd_heartbeat_min_peers，那么OSD会继续同离他较近的几个OSD建立心跳连接</p>
+<h3 id="机制"><a href="#机制" class="headerlink" title="机制"></a>机制</h3><p> OSD 之间每 osd_heartbeat_interval(默认 2 秒)会有一个来回心跳包的检测，该心跳包会分别从public和cluster网分别发出，当一个 OSD 在 osd_heartbeat_grace(默认 7 秒)时间内没有收到其他 OSD 心跳的时候，那么这个 OSD 会向 MON 汇报说另一个 OSD 心跳已经超时。当MON 收到多个来自不同故障域的 mon_osd_min_down_reporters个OSD 都汇报了同一个 OSD 的心跳问题，就会将这个 OSD mark DOWN</p>
+<h2 id="2、自身beacon机制"><a href="#2、自身beacon机制" class="headerlink" title="2、自身beacon机制"></a>2、自身beacon机制</h2><h3 id="需要了解的几个参数-1"><a href="#需要了解的几个参数-1" class="headerlink" title="需要了解的几个参数"></a>需要了解的几个参数</h3><p>osd_beacon_report_interval（默认100秒）    osd最小多少秒向mon发送信标，证明自己活着<br>mon_osd_report_timeout（默认300秒）    osd多久没有上报信标则标记其为down<br>mon_osd_adjust_heartbeat_grace    默认值为false，设置为true时，ceph将根据滞后量伸缩</p>
+<h3 id="机制-1"><a href="#机制-1" class="headerlink" title="机制"></a>机制</h3><p>OSD每最小osd_beacon_report_interval（默认100秒），如果一 OSD 在 mon_osd_report_timeout（默认300秒） 时间内没向mon报告过自己的状态，mon就认为它 down 了</p>
+<h2 id="3、上报事件"><a href="#3、上报事件" class="headerlink" title="3、上报事件"></a>3、上报事件</h2><h3 id="需要了解的几个参数-2"><a href="#需要了解的几个参数-2" class="headerlink" title="需要了解的几个参数"></a>需要了解的几个参数</h3><p>mong_osd_down_out_interval    在osd停止响应多少秒后把它标记为down且out<br>osd_mon_report_interval_max    osd最长多久向mon汇报一次，超时即认为他挂了<br>osd_mon_report_interval_min    osd向mon汇报的最小时间间隔<br>mon_osd_adjust_down_out_interval    设置为true时，ceph将根据滞后量伸缩</p>
+<h3 id="机制-2"><a href="#机制-2" class="headerlink" title="机制"></a>机制</h3><p>osd当有pg状态改变或者到达一定的时间间隔的时候，会向mon发送MSG_PGSTATS消息，这里称之为osd到mon的心跳，mon收到消息，并恢复MSG_PGSTATSACK,并记录心跳超时时间到last_osd_report。mon周期性的检测所有osd的last_osd_report，发现失效节点，并标记为down</p>
 
       
     </div>
@@ -411,7 +405,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/C/" rel="tag"># C</a>
+            <a href="/tags/ceph/" rel="tag"># ceph</a>
           
         </div>
       
@@ -424,8 +418,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/06/typora-use-skill/" rel="next" title="typora_use_skill">
-                <i class="fa fa-chevron-left"></i> typora_use_skill
+              <a href="/2019/05/21/column/" rel="next" title="column">
+                <i class="fa fa-chevron-left"></i> column
               </a>
             
           </div>
@@ -433,10 +427,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/07/自动精简配置/" rel="prev" title="自动精简配置">
-                自动精简配置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -578,7 +568,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C语言库函数—使用inet-pton判断ip的合法性"><span class="nav-number">1.</span> <span class="nav-text">C语言库函数—使用inet_pton判断ip的合法性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数原型："><span class="nav-number">1.1.</span> <span class="nav-text">函数原型：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数解析："><span class="nav-number">1.2.</span> <span class="nav-text">参数解析：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#af-地址簇"><span class="nav-number">1.2.1.</span> <span class="nav-text">af 地址簇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#src-地址来源"><span class="nav-number">1.2.2.</span> <span class="nav-text">src 地址来源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dst-接收转换后的数据"><span class="nav-number">1.2.3.</span> <span class="nav-text">dst 接收转换后的数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#返回值"><span class="nav-number">1.3.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需要包含的头文件"><span class="nav-number">1.4.</span> <span class="nav-text">需要包含的头文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">1.5.</span> <span class="nav-text">例子</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#osd故障检测机制"><span class="nav-number">1.</span> <span class="nav-text">osd故障检测机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1、伙伴上报机制"><span class="nav-number">1.2.</span> <span class="nav-text">1、伙伴上报机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需要了解的几个参数"><span class="nav-number">1.2.1.</span> <span class="nav-text">需要了解的几个参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#机制"><span class="nav-number">1.2.2.</span> <span class="nav-text">机制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、自身beacon机制"><span class="nav-number">1.3.</span> <span class="nav-text">2、自身beacon机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需要了解的几个参数-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">需要了解的几个参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#机制-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">机制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、上报事件"><span class="nav-number">1.4.</span> <span class="nav-text">3、上报事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需要了解的几个参数-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">需要了解的几个参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#机制-2"><span class="nav-number">1.4.2.</span> <span class="nav-text">机制</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -751,9 +741,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2019/04/06/inet-pton/';
-          this.page.identifier = '2019/04/06/inet-pton/';
-          this.page.title = 'inet_pton';
+          this.page.url = 'http://yoursite.com/2019/05/26/osd-故障检测机制/';
+          this.page.identifier = '2019/05/26/osd-故障检测机制/';
+          this.page.title = 'osd_故障检测机制';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://jackdan.disqus.com/embed.js';
