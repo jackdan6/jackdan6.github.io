@@ -86,6 +86,7 @@
 <meta property="og:description" content="Kafka:架构简介Kafka是一个开源的、分布式的、可分区的、可复制的基于日志提交的发布订阅消息系统。它具备以下特点： ·消息持久化： 为了从大数据中获取有价值的信息，任何信息的丢失都是负担不起的。Kafka使用了O(1)的磁盘结构设计，这样做即便是在要存储大体积的数据时也是可以提供稳定的性能。使用Kafka时，message会被存储并且会被复制以防止数据丢失。 ·高吞吐量： 设计是工作在普通的">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2019/04/13/kafka-架构简介/cafca-架构简介/broker.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/13/kafka-架构简介/关系型数据库和非关系型数据库/3.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/13/kafka-架构简介/cafca-架构简介/topic.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/13/kafka-架构简介/cafca-架构简介/topic_and_broker.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/13/kafka-架构简介/cafca-架构简介/partition.png">
@@ -94,7 +95,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/04/13/kafka-架构简介/cafca-架构简介/real.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/13/kafka-架构简介/cafca-架构简介/down.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/13/kafka-架构简介/cafca-架构简介/架构图.png">
-<meta property="og:updated_time" content="2019-04-27T11:31:19.484Z">
+<meta property="og:updated_time" content="2019-05-26T07:34:01.996Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kafka 架构简介">
 <meta name="twitter:description" content="Kafka:架构简介Kafka是一个开源的、分布式的、可分区的、可复制的基于日志提交的发布订阅消息系统。它具备以下特点： ·消息持久化： 为了从大数据中获取有价值的信息，任何信息的丢失都是负担不起的。Kafka使用了O(1)的磁盘结构设计，这样做即便是在要存储大体积的数据时也是可以提供稳定的性能。使用Kafka时，message会被存储并且会被复制以防止数据丢失。 ·高吞吐量： 设计是工作在普通的">
@@ -397,8 +398,9 @@
 <p>·分布式： Kafka Broker的中心化集群支持消息分区，而consumer采用分布式进行消费。</p>
 <p>·种多Client支持： Kafka很容易与其它平台进行支持，例如：Java、.NET、PHP、Ruby、Python。</p>
 <p>·实时： 消息由producer产生后立即对consumer可见。这个特性对于基于事件的系统是很关键的。</p>
-<h2 id="kafka各组件说明"><a href="#kafka各组件说明" class="headerlink" title="kafka各组件说明"></a>kafka各组件说明</h2><h3 id="Broker"><a href="#Broker" class="headerlink" title="Broker"></a>Broker</h3><p>每个kafka server称为一个Broker，多个borker组成kafka cluster。</p>
+<h2 id="kafka各组件说明"><a href="#kafka各组件说明" class="headerlink" title="kafka各组件说明"></a>kafka各组件说明</h2><h3 id="Broker"><a href="#Broker" class="headerlink" title="Broker"></a>Broker</h3><p>每个kafka server称为一个Broker，多个borker组成kafka cluster。    </p>
 <p><img src="/2019/04/13/kafka-架构简介/cafca-架构简介/broker.png" alt="架构图"></p>
+<p><img src="/2019/04/13/kafka-架构简介/关系型数据库和非关系型数据库/3.png" alt="test"></p>
 <p>一个机器上可以部署一个或者多个Broker，这多个Broker连接到相同的ZooKeeper就组成了Kafka集群</p>
 <h2 id="topic"><a href="#topic" class="headerlink" title="topic"></a>topic</h2><p>Kafka是一个发布订阅消息系统，它的逻辑结构如下：</p>
 <p><img src="/2019/04/13/kafka-架构简介/cafca-架构简介/topic.png" alt="topic"></p>
@@ -579,7 +581,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

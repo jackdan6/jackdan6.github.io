@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="bigdata,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Kafka:架构简介Kafka是一个开源的、分布式的、可分区的、可复制的基于日志提交的发布订阅消息系统。它具备以下特点： ·消息持久化： 为了从大数据中获取有价值的信息，任何信息的丢失都是负担不起的。Kafka使用了O(1)的磁盘结构设计，这样做即便是在要存储大体积的数据时也是可以提供稳定的性能。使用Kafka时，message会被存储并且会被复制以防止数据丢失。 ·高吞吐量： 设计是工作在普通的">
+<meta name="keywords" content="bigdata">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kafka_framework">
+<meta property="og:url" content="http://yoursite.com/2019/05/26/kafka-framework/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Kafka:架构简介Kafka是一个开源的、分布式的、可分区的、可复制的基于日志提交的发布订阅消息系统。它具备以下特点： ·消息持久化： 为了从大数据中获取有价值的信息，任何信息的丢失都是负担不起的。Kafka使用了O(1)的磁盘结构设计，这样做即便是在要存储大体积的数据时也是可以提供稳定的性能。使用Kafka时，message会被存储并且会被复制以防止数据丢失。 ·高吞吐量： 设计是工作在普通的">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/kafka-framework/">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/kafka-framework/cafca-%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B%5Ctopic.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/kafka-framework/C:/hexo/source/_posts/cafca-%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B%5Ctopic_and_broker.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/kafka-framework/C:/hexo/source/_posts/cafca-%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B%5Cpartition.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/kafka-framework/C:/hexo/source/_posts/cafca-%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B%5Csegment.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/kafka-framework/C:/hexo/source/_posts/cafca-%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B%5Cdirtribution.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/kafka-framework/C:/hexo/source/_posts/cafca-%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B%5Creal.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/kafka-framework/C:/hexo/source/_posts/cafca-%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B%5Cdown.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/kafka-framework/">
+<meta property="og:updated_time" content="2019-05-26T07:41:57.637Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="kafka_framework">
+<meta name="twitter:description" content="Kafka:架构简介Kafka是一个开源的、分布式的、可分区的、可复制的基于日志提交的发布订阅消息系统。它具备以下特点： ·消息持久化： 为了从大数据中获取有价值的信息，任何信息的丢失都是负担不起的。Kafka使用了O(1)的磁盘结构设计，这样做即便是在要存储大体积的数据时也是可以提供稳定的性能。使用Kafka时，message会被存储并且会被复制以防止数据丢失。 ·高吞吐量： 设计是工作在普通的">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/26/kafka-framework/">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/26/kafka-framework/">
+
+
+
+
+
+  <title>kafka_framework | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/26/kafka-framework/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">kafka_framework</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-26T15:37:18+08:00">
+                2019-05-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/kafka/" itemprop="url" rel="index">
+                    <span itemprop="name">kafka</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/26/kafka-framework/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/05/26/kafka-framework/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Kafka-架构简介"><a href="#Kafka-架构简介" class="headerlink" title="Kafka:架构简介"></a>Kafka:架构简介</h1><p>Kafka是一个开源的、分布式的、可分区的、可复制的基于日志提交的发布订阅消息系统。它具备以下特点：</p>
+<p>·消息持久化： 为了从大数据中获取有价值的信息，任何信息的丢失都是负担不起的。Kafka使用了O(1)的磁盘结构设计，这样做即便是在要存储大体积的数据时也是可以提供稳定的性能。使用Kafka时，message会被存储并且会被复制以防止数据丢失。</p>
+<p>·高吞吐量： 设计是工作在普通的硬件设施上多个客户端能够每秒处理几百兆的数据量。</p>
+<p>·分布式： Kafka Broker的中心化集群支持消息分区，而consumer采用分布式进行消费。</p>
+<p>·种多Client支持： Kafka很容易与其它平台进行支持，例如：Java、.NET、PHP、Ruby、Python。</p>
+<p>·实时： 消息由producer产生后立即对consumer可见。这个特性对于基于事件的系统是很关键的。</p>
+<h2 id="kafka各组件说明"><a href="#kafka各组件说明" class="headerlink" title="kafka各组件说明"></a>kafka各组件说明</h2><h3 id="Broker"><a href="#Broker" class="headerlink" title="Broker"></a>Broker</h3><p>每个kafka server称为一个Broker，多个borker组成kafka cluster。    </p>
+<p><img src="/2019/05/26/kafka-framework/" alt="架构图"></p>
+<p>一个机器上可以部署一个或者多个Broker，这多个Broker连接到相同的ZooKeeper就组成了Kafka集群</p>
+<h2 id="topic"><a href="#topic" class="headerlink" title="topic"></a>topic</h2><p>Kafka是一个发布订阅消息系统，它的逻辑结构如下：</p>
+<p><img src="/2019/05/26/kafka-framework/cafca-%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B%5Ctopic.png" alt="topic"></p>
+<p>Topic 就是消息类别名，一个topic中通常放置一类消息。每个topic都有一个或者多个订阅者，也就是消息的消费者consumer。</p>
+<p>Producer将消息推送到topic，由订阅该topic的consumer从topic中拉取消息。</p>
+<h3 id="Topic-与broker"><a href="#Topic-与broker" class="headerlink" title="Topic 与broker"></a>Topic 与broker</h3><p>一个Broker上可以创建一个或者多个Topic。同一个topic可以在同一集群下的多个Broker中分布。</p>
+<p><img src="/2019/05/26/kafka-framework/C:/hexo/source/_posts/cafca-%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B%5Ctopic_and_broker.png" alt="topic_broker"></p>
+<h3 id="partitioon-log"><a href="#partitioon-log" class="headerlink" title="partitioon log"></a>partitioon log</h3><p>Kafka会为每个topic维护了多个分区（partition），每个分区会映射到一个逻辑的日志（log）文件：</p>
+<p><img src="/2019/05/26/kafka-framework/C:/hexo/source/_posts/cafca-%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B%5Cpartition.png" alt="partition"></p>
+<p>​    每当一个message被发布到一个topic上的一个partition，broker应会将该message追加到这个逻辑log文件的最后一个segment上。这些segments 会被flush到磁盘上。Flush时可以按照时间来进行，也可以按照message 数来执行。</p>
+<p>​    每个partition都是一个有序的、不可变的结构化的提交日志记录的序列。在每个partition中每一条日志记录都会被分配一个序号——通常称为offset，offset在partition内是唯一的。论点逻辑文件会被化分为多个文件segment（每个segment的大小一样的）。</p>
+<p>​         Broker集群将会保留所有已发布的message records，不管这些消息是否已被消费。保留时间依赖于一个可配的保留周期。例如：如果设置了保留策略是2day，那么每一条消息发布两天内是被保留的，在这个2day的保留时间内，消息是可以被消费的。过期后不再保留。</p>
+<p><img src="/2019/05/26/kafka-framework/C:/hexo/source/_posts/cafca-%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B%5Csegment.png" alt="segment"></p>
+<h3 id="Partition-distribution"><a href="#Partition-distribution" class="headerlink" title="Partition distribution"></a>Partition distribution</h3><p>​    日志分区是分布式的存在于一个kafka集群的多个broker上。每个partition会被复制多份存在于不同的broker上。这样做是为了容灾。具体会复制几份，会复制到哪些broker上，都是可以配置的。经过相关的复制策略后，每个topic在每个broker上会驻留一到多个partition。如图：</p>
+<p><img src="/2019/05/26/kafka-framework/C:/hexo/source/_posts/cafca-%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B%5Cdirtribution.png" alt="distribution"></p>
+<p>对于同一个partition，它所在任何一个broker，都有能扮演两种角色：leader、follower。</p>
+<p>看上面的例子。红色的代表是一个leader。</p>
+<p>对于topic1的4个partition:</p>
+<p>​    Part 1的leader是broker1，followers是broker2\3。</p>
+<p>​    Part2的leader是broker2，followers是broker1\4。</p>
+<p>​    Part3的leader是broker3，followers是broker1\3。</p>
+<p>​    Part4的leader是broker4，followers是broker2\3。</p>
+<p>对于topic2的3个partition：</p>
+<p>​    Part1的leader是broker1，followers是broker2。</p>
+<p>​    Part2的leader是broker2，followers是broker3。</p>
+<p>​    Part3的leader是broker3，followers是broker4。</p>
+<p>对于topic3的4个partition：</p>
+<p>​    Part 1的leader是broker4，followers是broker1\2\3。</p>
+<p>​    Part2的leader是broker2，followers是broker1\3\4。</p>
+<p>​    Part3的leader是broker3，followers是broker1\2\4。</p>
+<p>​    Part4的leader是broker1，followers是broker2\3\4</p>
+<p>如下是一个真实的例子</p>
+<p><img src="/2019/05/26/kafka-framework/C:/hexo/source/_posts/cafca-%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B%5Creal.png" alt="real"></p>
+<p>图中的partition 0 的leader是broker 2，它有3个replicas：2，1，3。 </p>
+<p>In-Sync Replica：在同步中，也就是有哪些broker正处理同步中。partition 0的ISR是2，1，3，说明了3个replica都是正常状态。如果有一个broker down，那么它就不会在ISR中出现。</p>
+<p> 之后把broker1停止后：</p>
+<p><img src="/2019/05/26/kafka-framework/C:/hexo/source/_posts/cafca-%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B%5Cdown.png" alt="down"></p>
+<p>每个partition的Leader的用于处理到该partition的读写请求的。</p>
+<p>每个partition的followers是用于异步的从它的leader中复制数据的。</p>
+<p>Kafka会动态维护一个与Leader保持一致的同步副本（in-sync replicas （ISR））集合，并且会将最新的同步副本（ISR ）集合持久化到zookeeper。如果leader出现问题了，就会从该partition的followers中选举一个作为新的leader。</p>
+<p>所以呢，在一个kafka集群中，每个broker通常会扮演两个角色：在一个partition中扮演leader，在其它的partition中扮演followers。Leader是最繁忙的，要处理读写请求。这样将leader均分到不同的broker上，目的自然是要确保负载均衡。</p>
+<h3 id="Paroducer"><a href="#Paroducer" class="headerlink" title="Paroducer"></a>Paroducer</h3><p>​    Producer作为消息的生产者，在生产完消息后需要将消息投送到指定的目的地（某个topic的某个partition）。Producer可以根据指定选择partition的算法或者是随机方式来选择发布消息到哪个partition。</p>
+<h3 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h3><p>​    在Kafka中，同样有consumer group的概念，它是逻辑上将一些consumer分组。因为每个kafka consumer是一个进程。所以一个consumer group中的consumers将可能是由分布在不同机器上的不同的进程组成的。Topic中的每一条消息可以被多个consumer group消费，然而每个consumer group内只能有一个consumer来消费该消息。所以，如果想要一条消息被多个consumer消费，那么这些consumer就必须是在不同的consumer group中。所以也可以理解为consumer group才是topic在逻辑上的订阅者。</p>
+<p>​    每个consumer可以订阅多个topic。    </p>
+<p>​    每个consumer会保留它读取到某个partition的offset。而consumer 是通过zookeeper来保留offset的。</p>
+<h3 id="kafka提供的保障"><a href="#kafka提供的保障" class="headerlink" title="kafka提供的保障"></a>kafka提供的保障</h3><p>1、如果producer往特定的partition发送消息时，会按照先后顺序存储，也就是说如果发送顺序是message1、message2、message3。那么这三个消息在partition log中的记录的offset就是 message1_offset &lt; message2_offset &lt; message3_offset。</p>
+<p>2、consumer也是有序的浏览log中的记录。     </p>
+<p>3、如果一个topic指定了replication factor为N，那么就允许有N-1个Broker出错。</p>
+<h3 id="架构图"><a href="#架构图" class="headerlink" title="架构图"></a>架构图</h3><p><img src="/2019/05/26/kafka-framework/" alt="架构图"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/bigdata/" rel="tag"># bigdata</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/21/column/" rel="next" title="column">
+                <i class="fa fa-chevron-left"></i> column
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Kafka-架构简介"><span class="nav-number">1.</span> <span class="nav-text">Kafka:架构简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#kafka各组件说明"><span class="nav-number">1.1.</span> <span class="nav-text">kafka各组件说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Broker"><span class="nav-number">1.1.1.</span> <span class="nav-text">Broker</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#topic"><span class="nav-number">1.2.</span> <span class="nav-text">topic</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Topic-与broker"><span class="nav-number">1.2.1.</span> <span class="nav-text">Topic 与broker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#partitioon-log"><span class="nav-number">1.2.2.</span> <span class="nav-text">partitioon log</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Partition-distribution"><span class="nav-number">1.2.3.</span> <span class="nav-text">Partition distribution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Paroducer"><span class="nav-number">1.2.4.</span> <span class="nav-text">Paroducer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Consumer"><span class="nav-number">1.2.5.</span> <span class="nav-text">Consumer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kafka提供的保障"><span class="nav-number">1.2.6.</span> <span class="nav-text">kafka提供的保障</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#架构图"><span class="nav-number">1.2.7.</span> <span class="nav-text">架构图</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://jackdan.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2019/05/26/kafka-framework/';
+          this.page.identifier = '2019/05/26/kafka-framework/';
+          this.page.title = 'kafka_framework';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://jackdan.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
