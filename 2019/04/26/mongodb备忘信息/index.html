@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="mongodb备忘录1、日志路径：/home/ssd/log/mongodb/primaryLog/mongodb.log 2、网页地址：https://10.15.117.77 3、联系同事金月姣    陈明16 4、安装路径：/home/soft/NodeServer/mongodb/bin/">
+<meta name="description" content="mongodb备忘录常用的一些命令1234567891011121314151617181920212223242526272829303132cfg = &amp;#123;_id:&amp;quot;singleNode&amp;quot;,members:[&amp;#123;_id:0,host:&amp;quot;10.192.52.118:27017&amp;quot;,priority:10&amp;#125;,&amp;#123;_id:1,h">
 <meta name="keywords" content="bigdata">
 <meta property="og:type" content="article">
 <meta property="og:title" content="轻量大数据工作备忘">
 <meta property="og:url" content="http://yoursite.com/2019/04/26/mongodb备忘信息/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="mongodb备忘录1、日志路径：/home/ssd/log/mongodb/primaryLog/mongodb.log 2、网页地址：https://10.15.117.77 3、联系同事金月姣    陈明16 4、安装路径：/home/soft/NodeServer/mongodb/bin/">
+<meta property="og:description" content="mongodb备忘录常用的一些命令1234567891011121314151617181920212223242526272829303132cfg = &amp;#123;_id:&amp;quot;singleNode&amp;quot;,members:[&amp;#123;_id:0,host:&amp;quot;10.192.52.118:27017&amp;quot;,priority:10&amp;#125;,&amp;#123;_id:1,h">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-21T08:12:44.558Z">
+<meta property="og:updated_time" content="2019-05-30T14:30:30.983Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="轻量大数据工作备忘">
-<meta name="twitter:description" content="mongodb备忘录1、日志路径：/home/ssd/log/mongodb/primaryLog/mongodb.log 2、网页地址：https://10.15.117.77 3、联系同事金月姣    陈明16 4、安装路径：/home/soft/NodeServer/mongodb/bin/">
+<meta name="twitter:description" content="mongodb备忘录常用的一些命令1234567891011121314151617181920212223242526272829303132cfg = &amp;#123;_id:&amp;quot;singleNode&amp;quot;,members:[&amp;#123;_id:0,host:&amp;quot;10.192.52.118:27017&amp;quot;,priority:10&amp;#125;,&amp;#123;_id:1,h">
 
 
 
@@ -381,10 +381,7 @@
       
 
       
-        <h1 id="mongodb备忘录"><a href="#mongodb备忘录" class="headerlink" title="mongodb备忘录"></a>mongodb备忘录</h1><p>1、日志路径：<br>/home/ssd/log/mongodb/primaryLog/mongodb.log</p>
-<p>2、网页地址：<br><a href="https://10.15.117.77" target="_blank" rel="noopener">https://10.15.117.77</a></p>
-<p>3、联系同事<br>金月姣    陈明16</p>
-<p>4、安装路径：<br>/home/soft/NodeServer/mongodb/bin/</p>
+        <h1 id="mongodb备忘录"><a href="#mongodb备忘录" class="headerlink" title="mongodb备忘录"></a>mongodb备忘录</h1><h1 id="常用的一些命令"><a href="#常用的一些命令" class="headerlink" title="常用的一些命令"></a>常用的一些命令</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">cfg = &#123;</span><br><span class="line">_id:&quot;singleNode&quot;,</span><br><span class="line">members:[</span><br><span class="line">&#123;_id:0,host:&quot;10.192.52.118:27017&quot;,priority:10&#125;,</span><br><span class="line">&#123;_id:1,host:&quot;10.192.52.118:27018&quot;,priority:8&#125;,</span><br><span class="line">&#123;_id:2,host:&quot;10.192.52.118:27019&quot;,arbiterOnly:true&#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">rs.initiate(cfg)</span><br><span class="line">rs.status()</span><br><span class="line"></span><br><span class="line">cfg = &#123;</span><br><span class="line">_id:&quot;configSvr&quot;,</span><br><span class="line">configsvr:true,</span><br><span class="line">members:[</span><br><span class="line">&#123;_id:0,host:&quot;10.192.52.118:20000&quot;,priority:10&#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">db.runCommand(&#123;addshard:&quot;shard1/10.192.52.118:27017,10.192.52.118:27018,10.192.52.118:27019&quot;&#125;)</span><br><span class="line">sh.startBalancer()</span><br><span class="line">sh.enableSharding(&quot;face&quot;)</span><br><span class="line">sh.shardCollection(&quot;face.Dynamic_human&quot;,&#123;&quot;trace_uuid&quot;:1,&quot;trace_id&quot;:1&#125;,true)</span><br><span class="line">sh.shardCollection(&quot;face.static_human&quot;,&#123;&quot;human_id&quot;:1&#125;,true)</span><br><span class="line">use config</span><br><span class="line">db.settings.find()</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">./bin/mongo 10.15.117.165:27017</span><br><span class="line"></span><br><span class="line">db.createUser(&#123;user:&apos;lightsystem&apos;,pwd:&apos;Abc12345&apos;,roles:[&#123;role:&apos;root&apos;,db:&apos;admin&apos;&#125;,&quot;readWriteAnyDatabase&quot;]&#125;)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -514,7 +511,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -536,7 +533,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -569,7 +566,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mongodb备忘录"><span class="nav-number">1.</span> <span class="nav-text">mongodb备忘录</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mongodb备忘录"><span class="nav-number">1.</span> <span class="nav-text">mongodb备忘录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用的一些命令"><span class="nav-number">2.</span> <span class="nav-text">常用的一些命令</span></a></li></ol></div>
             
 
           </div>
