@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="netstat-i 显示网卡列表-t 显示tcp协议的链接状况-u 显示udb协议的链接状况-n 直接使用ip地址，而不通过域名服务器-l 显示监控中的服务器的socket-p 显示正在使用socket的程序识别码或名称 注意：可以通过查看DRP字段和ERR字段来查看接收和发送丢包现象">
+<meta name="description" content="netstat-i 显示网卡列表-t 显示tcp协议的链接状况-u 显示udb协议的链接状况-n 直接使用ip地址，而不通过域名服务器-l 显示监控中的服务器的socket-p 显示正在使用socket的程序识别码或名称 注意：可以通过查看DRP字段和ERR字段来查看接收和发送丢包现象 常用用法：1、lsof -i :22 知道22端口被哪个进程占用 2、netstat -lnp|grep 700">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="netstat">
 <meta property="og:url" content="http://yoursite.com/2019/05/21/netstat/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="netstat-i 显示网卡列表-t 显示tcp协议的链接状况-u 显示udb协议的链接状况-n 直接使用ip地址，而不通过域名服务器-l 显示监控中的服务器的socket-p 显示正在使用socket的程序识别码或名称 注意：可以通过查看DRP字段和ERR字段来查看接收和发送丢包现象">
+<meta property="og:description" content="netstat-i 显示网卡列表-t 显示tcp协议的链接状况-u 显示udb协议的链接状况-n 直接使用ip地址，而不通过域名服务器-l 显示监控中的服务器的socket-p 显示正在使用socket的程序识别码或名称 注意：可以通过查看DRP字段和ERR字段来查看接收和发送丢包现象 常用用法：1、lsof -i :22 知道22端口被哪个进程占用 2、netstat -lnp|grep 700">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-27T01:11:27.960Z">
+<meta property="og:updated_time" content="2019-05-30T15:12:53.152Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="netstat">
-<meta name="twitter:description" content="netstat-i 显示网卡列表-t 显示tcp协议的链接状况-u 显示udb协议的链接状况-n 直接使用ip地址，而不通过域名服务器-l 显示监控中的服务器的socket-p 显示正在使用socket的程序识别码或名称 注意：可以通过查看DRP字段和ERR字段来查看接收和发送丢包现象">
+<meta name="twitter:description" content="netstat-i 显示网卡列表-t 显示tcp协议的链接状况-u 显示udb协议的链接状况-n 直接使用ip地址，而不通过域名服务器-l 显示监控中的服务器的socket-p 显示正在使用socket的程序识别码或名称 注意：可以通过查看DRP字段和ERR字段来查看接收和发送丢包现象 常用用法：1、lsof -i :22 知道22端口被哪个进程占用 2、netstat -lnp|grep 700">
 
 
 
@@ -383,6 +383,8 @@
       
         <h1 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h1><p>-i 显示网卡列表<br>-t 显示tcp协议的链接状况<br>-u 显示udb协议的链接状况<br>-n 直接使用ip地址，而不通过域名服务器<br>-l 显示监控中的服务器的socket<br>-p 显示正在使用socket的程序识别码或名称</p>
 <p>注意：可以通过查看DRP字段和ERR字段来查看接收和发送丢包现象</p>
+<h2 id="常用用法："><a href="#常用用法：" class="headerlink" title="常用用法："></a>常用用法：</h2><p>1、lsof -i :22 知道22端口被哪个进程占用</p>
+<p>2、netstat -lnp|grep 7000 查看7000端口被哪个进程占用</p>
 
       
     </div>
@@ -567,7 +569,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#netstat"><span class="nav-number">1.</span> <span class="nav-text">netstat</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#netstat"><span class="nav-number">1.</span> <span class="nav-text">netstat</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用用法："><span class="nav-number">1.1.</span> <span class="nav-text">常用用法：</span></a></li></ol></li></ol></div>
             
 
           </div>
